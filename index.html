@@ -26,7 +26,7 @@
 <style>
   html { scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; }
   html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; display: none; }
-  html, body { margin:0; min-height:100%; background: #010204 !important; }
+  html, body { margin:0; min-height:100%; background: #010204 !important; overflow-x: hidden; max-width: 100%; }
   body { overflow-x: hidden; }
   /* fond de secours fixe : aucun gap clair possible (toggle plein écran Arc, etc.) */
   body::before { content:""; position:fixed; inset:-10vh 0; z-index:-1; background:#010204; pointer-events:none; }
@@ -107,8 +107,28 @@
     [data-anim="buybtn"] > span { padding: 12px 14px !important; }
     /* titres de fenêtre + paddings internes */
     [data-window] > div:nth-child(2) { padding-left: 16px !important; padding-right: 16px !important; }
-    /* checkout : bouton et infos pleine largeur */
-    [data-grid="split"] a[href] { align-self: stretch !important; }
+    /* boutons Obtenir : pleine largeur, label centré qui remplit */
+    [data-buy]:not([data-m="header-cta"]) { display: flex !important; width: 100% !important; align-self: stretch !important; }
+    [data-buy]:not([data-m="header-cta"]) > span:first-child { flex: 1 1 auto !important; justify-content: center !important; }
+    [data-m="header-cta"] { width: auto !important; flex: none !important; }
+    /* pas de bouton flottant sur mobile */
+    [data-anim="buybtn"] { display: none !important; }
+    /* header mobile : pas de bande bleue, header plein, logo + OBTENIR */
+    [data-anim="banner"] { display: none !important; }
+    [data-anim="header"] { top: 0 !important; left: 0 !important; right: 0 !important; justify-content: space-between !important; gap: 12px !important; padding: 12px 16px !important; background: #000 !important; border: none !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+    [data-anim="header"] img[alt="After Effects"], [data-anim="header"] span { display: none !important; }
+    [data-m="header-cta"] { display: flex !important; }
+    /* le hero démarre sous le header plein écran */
+    [data-sec="hero"], section[style*="100dvh"] { min-height: 100dvh !important; }
+    /* --- allègement mobile : on enlève le superflu --- */
+    .typix-scan { display: none !important; }
+    [data-m="decor"] { display: none !important; }
+    [data-m="huebar"] { display: none !important; }
+    [data-m="morestyles"] { display: none !important; }
+    [data-window] { box-shadow: none !important; }
+    /* neutralise les décalages latéraux qui font déborder à droite */
+    [data-sec] { transform: none !important; margin-left: auto !important; margin-right: auto !important; }
+    [data-grid="split"] > div, [data-window] { min-width: 0 !important; }
   }
 </style>
 </helmet>
@@ -147,7 +167,7 @@
   </div>
 
   <!-- ====== Décor BBS (fond) ====== -->
-  <div aria-hidden="true" style="position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden; font-family: var(--font-mono); color: var(--neon-soft); font-size:12px; line-height:1.7; letter-spacing: var(--track-tight); text-transform:uppercase;">
+  <div data-m="decor" aria-hidden="true" style="position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden; font-family: var(--font-mono); color: var(--neon-soft); font-size:12px; line-height:1.7; letter-spacing: var(--track-tight); text-transform:uppercase;">
     <div style="position:absolute; top:4%; left:18px; opacity:0.16;">– 0 1<br>.NEW TYPIX<br><br>.01 &gt; STANDARD<br>.02 &gt; BLOCS<br>.03 &gt; BINAIRE<br>.04 &gt; POINTS<br>.05 &gt; CUSTOM</div>
     <div style="position:absolute; top:3%; right:20px; text-align:right; opacity:0.16;">&amp; FX ENGINE<br>&amp; 2026<br><br>·······<br>·······<br>(…) RENDERING ……<br>&nbsp;&nbsp;:)<br>= 01234<br>5678</div>
     <div style="position:absolute; top:14%; left:24px; opacity:0.12;">·······<br>·······<br>·······<br>·······</div>
@@ -214,6 +234,7 @@
       <span style="width:1px; height:22px; background: rgba(255,255,255,0.25); display:block;"></span>
       <img src="assets/logo-ae.png" alt="After Effects" style="height:26px; width:auto; display:block;">
     </a>
+    <a data-m="header-cta" data-buy="" href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:none; align-items:center; gap:8px; pointer-events:auto; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#06080c; background:#fff; border:1px solid var(--neon); padding:9px 14px; text-decoration:none; white-space:nowrap;"><i class="fa-solid fa-download" style="font-size:11px;"></i>Obtenir</a>
   </header>
 
   <!-- ====== HERO — DOS boot window ====== -->
@@ -243,7 +264,7 @@
           </div>
           <p style="animation: typixReveal 0.55s cubic-bezier(0.22,1,0.36,1) 0.95s; font-size:14px; line-height: var(--leading-body); color: var(--txt); max-width:48ch; margin:22px 0 0;">Un véritable <span style="color: var(--neon-soft);">moteur d'effet</span> pour After Effects. Presets prêts à poser et contrôles 100% custom (densité, charset, couleur) pour une signature visuelle qui t'appartient.</p>
           <div style="display:flex; align-items:center; gap:18px; margin-top:26px; flex-wrap:wrap;">
-            <a href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:inline-flex; align-items:stretch; white-space:nowrap; font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#06080c; background:#fff; text-decoration:none; box-shadow:0 0 0 rgba(92,214,255,0); transition: filter var(--dur-fast) var(--ease);" style-hover="filter: brightness(1.03) drop-shadow(0 0 7px rgba(92,214,255,0.32));">
+            <a data-buy="" href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:inline-flex; align-items:stretch; white-space:nowrap; font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#06080c; background:#fff; text-decoration:none; box-shadow:0 0 0 rgba(92,214,255,0); transition: filter var(--dur-fast) var(--ease);" style-hover="filter: brightness(1.03) drop-shadow(0 0 7px rgba(92,214,255,0.32));">
               <span style="display:inline-flex; align-items:center; gap:9px; padding:15px 22px;"><i class="fa-solid fa-download" style="font-size:12px;"></i>Obtenir</span>
               <span style="display:inline-flex; align-items:center; gap:7px; padding:15px 18px; background:#06080c; color:#fff;"><span style="text-decoration:line-through; opacity:.5; font-size:12px;">20€</span>15€ <span style="color: var(--neon);">→</span></span>
             </a>
@@ -277,7 +298,7 @@
         <span style="font-size:12px; font-weight:700; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">▓ STYLES/ · 18 PRESETS</span>
         <span style="display:flex; align-items:center; gap:1px; flex:none;"><span data-wact="min" title="Réduire" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease);" style-hover="background:rgba(3,20,29,0.16);"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><line x1="2" y1="8" x2="9" y2="8" stroke="currentColor" stroke-width="1.4"></line></svg></span><span data-wact="max" title="Agrandir" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease);" style-hover="background:rgba(3,20,29,0.16);"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="2.2" y="2.2" width="6.6" height="6.6" stroke="currentColor" stroke-width="1.4"></rect></svg></span><span data-wact="close" title="Fermer" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);" style-hover="background:#e84343; color:#fff;"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><line x1="2.6" y1="2.6" x2="8.4" y2="8.4" stroke="currentColor" stroke-width="1.4"></line><line x1="8.4" y1="2.6" x2="2.6" y2="8.4" stroke="currentColor" stroke-width="1.4"></line></svg></span></span>
       </div>
-      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:12px 20px; border-bottom:1px solid var(--bd-soft); background: var(--panel-2);">
+      <div data-m="huebar" style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:12px 20px; border-bottom:1px solid var(--bd-soft); background: var(--panel-2);">
         <span style="font-size:11px; font-weight:700; letter-spacing: var(--track-tight); text-transform:uppercase; color: var(--neon); white-space:nowrap;">&gt; Teinte</span>
         <input type="range" min="0" max="360" step="1" value="{{ hue }}" onInput="{{ onHue }}" class="typix-hue" style="flex:1; min-width:160px; height:4px; -webkit-appearance:none; appearance:none; border-radius:2px; background: linear-gradient(90deg,#5cd6ff,#4d6bff,#b04dff,#ff4db0,#ff5a4d,#d4d44d,#6bd44d,#4dd49b,#5cd6ff); outline:none; cursor:pointer;">
         <span style="font-size:11px; font-weight:700; letter-spacing: var(--track-tight); color: var(--txt-mute); white-space:nowrap; min-width:64px; text-align:right;">{{ hueLabel }}</span>
@@ -295,7 +316,7 @@
           </figure>
         </sc-for>
       </div>
-      <div style="padding:14px 16px; border-top:1px solid var(--bd-soft);">
+      <div data-m="morestyles" style="padding:14px 16px; border-top:1px solid var(--bd-soft);">
         <div data-reveal="up" data-reveal-text="" data-reveal-delay="80" style="font-size:11px; font-weight:700; letter-spacing: var(--track-tight); color: var(--neon); margin-bottom:10px;">+ 9 AUTRES STYLES INCLUS DANS L'EFFET</div>
         <div style="display:flex; flex-wrap:wrap; gap:7px;">
           <sc-for list="{{ moreStyles }}" as="m" hint-placeholder-count="12">
@@ -440,7 +461,7 @@
             <div style="font-size:11px; font-weight:700; letter-spacing: var(--track-wide); text-transform:uppercase; color: var(--txt-mute); margin-top:10px;">Paiement unique · Accès à vie · MàJ incluses</div>
           </div>
 
-          <a href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:inline-flex; align-self:flex-start; align-items:stretch; white-space:nowrap; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#06080c; background:#fff; text-decoration:none; border:1px solid var(--neon); transition: filter var(--dur-fast) var(--ease);" style-hover="filter: brightness(1.03) drop-shadow(0 0 7px rgba(92,214,255,0.32));">
+          <a data-buy="" href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:inline-flex; align-self:flex-start; align-items:stretch; white-space:nowrap; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#06080c; background:#fff; text-decoration:none; border:1px solid var(--neon); transition: filter var(--dur-fast) var(--ease);" style-hover="filter: brightness(1.03) drop-shadow(0 0 7px rgba(92,214,255,0.32));">
             <span style="display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:15px 22px;"><i class="fa-solid fa-download" style="font-size:12px;"></i>Obtenir Typix</span>
             <span style="display:inline-flex; align-items:center; gap:6px; padding:15px 18px; background:#06080c; color:#fff;"><span style="color: var(--neon);">→</span></span>
           </a>
@@ -501,7 +522,7 @@
         <h2 data-split="" data-split-text="Transforme tes vidéos
 en quelques clics." style="font-size: clamp(28px, 4vw, 52px); line-height:1.05; letter-spacing:-0.03em; margin:0 auto 14px; color:#f3fbff;">Transforme tes vidéos en quelques clics.</h2>
         <p style="font-size:14px; line-height: var(--leading-body); color: var(--txt-mute); margin:0 auto 30px; max-width:46ch;">18 styles, contrôles 100% custom, installateur inclus. Accès immédiat après l'achat.</p>
-        <a href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:inline-flex; align-items:stretch; white-space:nowrap; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#06080c; background:#fff; text-decoration:none; border:1px solid var(--neon); transition: filter var(--dur-fast) var(--ease);" style-hover="filter: brightness(1.03) drop-shadow(0 0 7px rgba(92,214,255,0.32));">
+        <a data-buy="" href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:inline-flex; align-items:stretch; white-space:nowrap; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#06080c; background:#fff; text-decoration:none; border:1px solid var(--neon); transition: filter var(--dur-fast) var(--ease);" style-hover="filter: brightness(1.03) drop-shadow(0 0 7px rgba(92,214,255,0.32));">
           <span style="display:inline-flex; align-items:center; gap:10px; padding:16px 24px;"><i class="fa-solid fa-download" style="font-size:12px;"></i>Obtenir Typix</span>
           <span style="display:inline-flex; align-items:center; gap:8px; padding:16px 22px; background:#06080c; color:#fff;"><span style="text-decoration:line-through; opacity:.45; font-size:12px;">20€</span><span style="font-size:16px; color: var(--neon);">15€</span> <span style="color: var(--neon);">→</span></span>
         </a>
