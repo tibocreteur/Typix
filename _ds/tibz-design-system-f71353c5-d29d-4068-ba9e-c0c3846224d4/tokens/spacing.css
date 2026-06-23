@@ -1,0 +1,49 @@
+/* ============================================================
+   Tibz Design — Spacing, radius, border & motion tokens
+   Soft 10–15px corners, one signature "clipped" corner trick,
+   thick 2–3px black outlines, and quick ease-in-out motion.
+   ============================================================ */
+:root {
+  /* ---- Spacing scale (px) ---- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  /* ---- Layout ---- */
+  --gutter:      40px;   /* page side margin (--espacecote)        */
+  --gutter-sm:   20px;   /* mobile side margin                     */
+  --gap-image:   15px;   /* gap between project tiles              */
+  --maxw:        1600px; /* content max width                      */
+
+  /* ---- Radii ---- */
+  --radius-card:    15px;  /* project tiles (--anglesprojets)      */
+  --radius:         10px;  /* cards, panels (--anglesindex)        */
+  --radius-button:   7px;  /* buttons (--anglebouton)              */
+  --radius-pill:    50px;  /* chips, dots, badges                  */
+  --radius-clip:     3px;  /* the "snapped" corner on icon buttons */
+
+  /* ---- Borders ---- */
+  --border-thin:  1px;
+  --border-mid:   2px;
+  --border-bold:  3px;     /* signature thick outline              */
+  --stroke:       var(--border-bold) solid var(--ink);
+
+  /* ---- Elevation (used sparingly — this brand favours flat) ---- */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.08);
+  --shadow-md: 0 6px 20px rgba(0,0,0,.12);
+
+  /* ---- Motion ---- */
+  --ease:       ease-in-out;             /* @kind other */
+  --ease-out:   cubic-bezier(.16,.84,.44,1); /* @kind other */
+  --dur-fast:   0.2s;                     /* @kind other */
+  --dur:        0.3s;                     /* @kind other */
+  --dur-slow:   0.7s;                     /* @kind other */
+}

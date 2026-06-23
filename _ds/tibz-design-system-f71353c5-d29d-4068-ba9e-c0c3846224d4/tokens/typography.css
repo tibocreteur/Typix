@@ -1,0 +1,37 @@
+/* ============================================================
+   Tibz Design — Typography tokens
+   The identity uses two faces only: IBM Plex Mono (the voice) and
+   DM Serif Display italic (one editorial accent). Tight tracking,
+   generous leading, lots of UPPERCASE labels.
+   ============================================================ */
+:root {
+  /* ---- Families ---- */
+  --font-mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-serif:   "DM Serif Display", Georgia, serif;        /* italic accent */
+  --font-body:    var(--font-mono);
+
+  /* ---- Weights ---- */
+  --w-light:   300; /* @kind other */
+  --w-regular: 400; /* @kind other */
+  --w-medium:  500; /* @kind other */
+  --w-bold:    700; /* @kind other */
+
+  /* ---- Tracking & leading ---- */
+  --track-tight:  -0.02em;  /* default — almost everything */
+  --track-flat:    0em;
+  --track-wide:    0.05em;  /* small uppercase eyebrows    */
+  --track-caps:    0.1em;   /* spaced poster labels        */
+  --leading-tight: 1.1;     /* display headlines           */
+  --leading-snug:  1.4;
+  --leading-body:  1.7;     /* justified paragraphs        */
+
+  /* ---- Type scale (rem, 16px root) ---- */
+  --fs-eyebrow: 0.8125rem;  /* 13px — tags / meta          */
+  --fs-label:   0.875rem;   /* 14px — UI labels            */
+  --fs-body:    1rem;       /* 16px — paragraph            */
+  --fs-lead:    1.25rem;    /* 20px — lead paragraph       */
+  --fs-h3:      1.5rem;     /* 24px                        */
+  --fs-h2:      2rem;       /* 32px                        */
+  --fs-h1:      3rem;       /* 48px — section titles       */
+  --fs-display: 5rem;       /* 80px — hero / poster        */
+}

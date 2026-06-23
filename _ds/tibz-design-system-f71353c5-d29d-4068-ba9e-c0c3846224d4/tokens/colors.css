@@ -1,0 +1,57 @@
+/* ============================================================
+   Tibz Design — Colour tokens
+   A warm paper canvas, pure black ink, one signature green,
+   and a coded palette where each creative discipline owns a hue.
+   Every accent ships with a deep "ink" partner for text-on-colour.
+   ============================================================ */
+:root {
+  /* ---- Canvas & ink (base neutrals) ---- */
+  --paper:        #f9f9f4;   /* primary background — warm off-white */
+  --paper-2:      #ebebe6;   /* sunk surface / card fill (greige)   */
+  --paper-3:      #e1e1da;   /* hairline / divider on paper         */
+  --ink:          #000000;   /* pure black — text, borders, marks   */
+  --ink-soft:     #1a1a17;   /* near-black for large fills          */
+  --ink-mute:     #6f6f69;   /* secondary text on paper             */
+  --ink-faint:    #9a9a95;   /* tertiary / disabled / skill grey    */
+  --invert:       #f9f9f4;   /* text on dark / on-colour fallback   */
+
+  /* ---- Signature green (the Tibz accent) ---- */
+  --green:        #9bee68;   /* selection, NEW, highlight, CTA glow */
+  --green-ink:    #1b3a1d;   /* deep forest — text on green         */
+  --green-dark:   #1b3a1d;
+
+  /* ---- Discipline palette (each skill owns a hue) ---- */
+  --threed:       #e7a026;   /* 3D — amber          */
+  --threed-ink:   #694600;
+  --print:        #e84343;   /* Print — red         */
+  --print-ink:    #670000;
+  --motion:       #ae319e;   /* Motion — magenta    */
+  --motion-ink:   #5a0156;
+  --chara:        #43a09b;   /* Characters — teal   */
+  --chara-ink:    #103634;
+  --uiux:         #537aef;   /* UI/UX — blue        */
+  --uiux-ink:     #00274e;
+  --identity:     #e726cd;   /* Visual identity — pink */
+  --identity-ink: #69007e;
+  --award:        #fff5cc;   /* Award — cream       */
+  --award-ink:    #e7a026;
+
+  /* ---- Semantic aliases (use these in components) ---- */
+  --bg:            var(--paper);
+  --bg-sunk:       var(--paper-2);
+  --surface-card:  var(--paper-2);
+  --text-strong:   var(--ink);
+  --text-body:     var(--ink);
+  --text-muted:    var(--ink-mute);
+  --text-faint:    var(--ink-faint);
+  --border:        var(--ink);
+  --border-hair:   var(--paper-3);
+  --selection:     var(--green);
+  --accent:        var(--green);
+  --accent-ink:    var(--green-ink);
+  --link-hover:    #d8f4ff;   /* the site's pale-blue link hover     */
+
+  /* ---- Overlays & gradients ---- */
+  --scrim:         linear-gradient(to top, rgba(0,0,0,.8), transparent); /* @kind other */
+  --scrim-strong:  linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.3), rgba(255,255,255,.55)); /* @kind other */
+}

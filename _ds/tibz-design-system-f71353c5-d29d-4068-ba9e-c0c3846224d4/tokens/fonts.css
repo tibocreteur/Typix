@@ -1,0 +1,18 @@
+/* ============================================================
+   Tibz Design — Identity webfonts
+   The brand identity uses just two faces:
+     • IBM Plex Mono   — the voice (UI, body, labels, code)
+     • DM Serif Display (italic) — the one editorial accent
+   Both load from Google Fonts.
+
+   Erica One / Gruno / Inter are NOT identity faces — they are
+   typefaces used inside specific client/personal PROJECTS. Their
+   files live in /assets/fonts for reuse, but are intentionally
+   left out of this identity closure.
+   ============================================================ */
+
+/* IBM Plex Mono — primary monospace voice */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+/* DM Serif Display — italic editorial accent (epigraphs, marquee) */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
