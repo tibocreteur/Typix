@@ -27,6 +27,7 @@
   html { scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; }
   html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; display: none; }
   html, body { margin:0; min-height:100%; background: #010204 !important; }
+  body { overflow-x: hidden; }
   /* fond de secours fixe : aucun gap clair possible (toggle plein écran Arc, etc.) */
   body::before { content:""; position:fixed; inset:-10vh 0; z-index:-1; background:#010204; pointer-events:none; }
   ::selection { background: #5cd6ff; color: #03141d; }
@@ -76,18 +77,38 @@
     animation: typixFlicker 4s infinite; mix-blend-mode: screen; }
 
   /* ---------- responsive ---------- */
-  @media (max-width: 900px) {
+  @media (max-width: 980px) {
     [data-sec] { transform: none !important; }
-    [data-grid="split"] { grid-template-columns: 1fr !important; }
-    [data-grid="custom"] { grid-template-columns: 1fr !important; }
+    [data-grid="split"], [data-grid="custom"] { grid-template-columns: 1fr !important; }
     [data-grid="feat4"] { grid-template-columns: 1fr 1fr !important; }
+    /* fenêtres : pleine largeur, on annule les décalages */
+    [data-window] { width: 100% !important; max-width: none !important; margin-left: 0 !important; margin-right: 0 !important; }
   }
-  @media (max-width: 640px) {
-    [data-grid="demos"] { grid-template-columns: 1fr 1fr !important; }
-    [data-grid="feat4"] { grid-template-columns: 1fr !important; }
-    [data-grid="steps3"] { grid-template-columns: 1fr !important; }
-    [data-anim="header"] img:last-of-type, [data-anim="header"] span { display:none !important; }
-    [data-anim="buybtn"] { right:12px !important; bottom:12px !important; font-size:13px !important; }
+  @media (max-width: 680px) {
+    body { --gutter: 16px; }
+    /* grilles en 1 colonne (sauf démos en 2) */
+    [data-grid="demos"] { grid-template-columns: 1fr 1fr !important; gap: 10px !important; padding: 14px !important; }
+    [data-grid="feat4"], [data-grid="steps3"] { grid-template-columns: 1fr !important; }
+    [data-grid="feat4"] > div, [data-grid="steps3"] > div { border-right: none !important; min-height: 0 !important; padding: 20px !important; }
+    [data-grid="custom"] { padding: 18px !important; gap: 20px !important; }
+    /* hero */
+    section[style*="min-height"] > div[style*="max-width:1240px"] { padding: 96px 0 0 !important; }
+    [data-m="herowin-pad"] { padding: 22px 18px !important; }
+    [data-m="herologos"] img:first-of-type { width: min(54vw, 200px) !important; }
+    [data-m="herologos"] span, [data-m="herologos"] img:last-of-type { display: none !important; }
+    /* prix */
+    [data-m="price"] span:first-child { font-size: 46px !important; }
+    /* header : logo seul, compact */
+    [data-anim="header"] img:last-of-type, [data-anim="header"] span { display: none !important; }
+    [data-anim="header"] { top: 0 !important; padding: 14px 16px !important; }
+    [data-anim="header"] img:first-of-type { height: 26px !important; }
+    /* bouton fixe : compact */
+    [data-anim="buybtn"] { right: 10px !important; bottom: 10px !important; font-size: 12px !important; }
+    [data-anim="buybtn"] > span { padding: 12px 14px !important; }
+    /* titres de fenêtre + paddings internes */
+    [data-window] > div:nth-child(2) { padding-left: 16px !important; padding-right: 16px !important; }
+    /* checkout : bouton et infos pleine largeur */
+    [data-grid="split"] a[href] { align-self: stretch !important; }
   }
 </style>
 </helmet>
@@ -208,8 +229,8 @@
           <span style="font-size:12px; font-weight:700; letter-spacing: var(--track-tight); flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">▓ TYPIX.EXE · FX ENGINE</span>
           <span style="display:flex; align-items:center; gap:1px; flex:none;"><span data-wact="min" title="Réduire" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease);" style-hover="background:rgba(3,20,29,0.16);"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><line x1="2" y1="8" x2="9" y2="8" stroke="currentColor" stroke-width="1.4"></line></svg></span><span data-wact="max" title="Agrandir" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease);" style-hover="background:rgba(3,20,29,0.16);"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="2.2" y="2.2" width="6.6" height="6.6" stroke="currentColor" stroke-width="1.4"></rect></svg></span><span data-wact="close" title="Fermer" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);" style-hover="background:#e84343; color:#fff;"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><line x1="2.6" y1="2.6" x2="8.4" y2="8.4" stroke="currentColor" stroke-width="1.4"></line><line x1="8.4" y1="2.6" x2="2.6" y2="8.4" stroke="currentColor" stroke-width="1.4"></line></svg></span></span>
         </div>
-        <div style="padding:30px 30px 24px;">
-          <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+        <div style="padding:30px 30px 24px;" data-m="herowin-pad">
+          <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;" data-m="herologos">
             <img src="assets/typix-logo.png" alt="TYPIX" style="display:block; width: min(60vw, 270px); height:auto;">
             <span style="width:1px; height:54px; background: rgba(255,255,255,0.2); display:block;"></span>
             <img src="assets/logo-ae.png" alt="After Effects" style="display:block; height:62px; width:auto;">
@@ -365,7 +386,7 @@
   </section>
 
   <!-- ====== INCLUS + CHECKOUT (2 fenêtres) ====== -->
-  <section id="inclus" style="position:relative; z-index:5; max-width:1200px; margin:-14px auto 0; padding:40px var(--gutter) 0; transform: translateX(2%); box-sizing:border-box;" data-sec="">
+  <section id="inclus" style="position:relative; z-index:5; max-width:1200px; margin:-14px auto 0; padding:40px var(--gutter) 0; box-sizing:border-box;" data-sec="">
     <div style="display:grid; grid-template-columns: 1fr; gap:24px; align-items:start;" data-grid="split">
 
       <!-- Fenêtre A : contenu -->
@@ -401,7 +422,7 @@
       </div>
 
       <!-- Fenêtre B : checkout -->
-      <div data-window="" data-reveal="left" style="border:1px solid var(--bd); background: var(--panel);">
+      <div data-window="" data-reveal="left" style="border:1px solid var(--bd); background: var(--panel); width:88%; margin-right:12%;">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 12px; background: var(--neon); color: var(--neon-ink);">
           <span style="font-size:12px; font-weight:700; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">▓ CHECKOUT.EXE</span>
           <span style="display:flex; align-items:center; gap:1px; flex:none;"><span data-wact="min" title="Réduire" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease);" style-hover="background:rgba(3,20,29,0.16);"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><line x1="2" y1="8" x2="9" y2="8" stroke="currentColor" stroke-width="1.4"></line></svg></span><span data-wact="max" title="Agrandir" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease);" style-hover="background:rgba(3,20,29,0.16);"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="2.2" y="2.2" width="6.6" height="6.6" stroke="currentColor" stroke-width="1.4"></rect></svg></span><span data-wact="close" title="Fermer" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);" style-hover="background:#e84343; color:#fff;"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><line x1="2.6" y1="2.6" x2="8.4" y2="8.4" stroke="currentColor" stroke-width="1.4"></line><line x1="8.4" y1="2.6" x2="2.6" y2="8.4" stroke="currentColor" stroke-width="1.4"></line></svg></span></span>
@@ -409,7 +430,7 @@
         <div style="padding:24px 26px 26px; display:flex; flex-direction:column; gap:18px;">
           <div>
             <div style="font-size:11px; color: var(--txt-faint); letter-spacing: var(--track-wide); text-transform:uppercase; margin-bottom:12px;">// coût total</div>
-            <div style="display:flex; align-items:center; gap:14px;">
+            <div style="display:flex; align-items:center; gap:14px;" data-m="price">
               <span style="font-size:60px; font-weight:700; line-height:1; letter-spacing:-0.045em; color:#ffffff;">15€</span>
               <div style="display:flex; flex-direction:column; align-items:flex-start; gap:6px;">
                 <span style="font-size:16px; font-weight:700; text-decoration:line-through; color: var(--txt-faint); line-height:1;">20€</span>
@@ -451,8 +472,8 @@
   </section>
 
   <!-- ====== FAQ ====== -->
-  <section id="faq" style="position:relative; z-index:7; max-width:1200px; margin:-14px auto 0; padding:40px var(--gutter) 96px; transform: translateX(1.8%); box-sizing:border-box;" data-sec="">
-    <div data-window="" data-reveal="right" style="border:1px solid var(--bd); background: var(--panel);">
+  <section id="faq" style="position:relative; z-index:7; max-width:1200px; margin:-14px auto 0; padding:40px var(--gutter) 96px; box-sizing:border-box;" data-sec="">
+    <div data-window="" data-reveal="right" style="border:1px solid var(--bd); background: var(--panel); width:90%; margin-left:10%;">
       <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 12px; background: var(--neon); color: var(--neon-ink);">
         <span style="font-size:12px; font-weight:700; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">▓ MANUAL.TXT · FAQ</span>
         <span style="display:flex; align-items:center; gap:1px; flex:none;"><span data-wact="min" title="Réduire" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease);" style-hover="background:rgba(3,20,29,0.16);"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><line x1="2" y1="8" x2="9" y2="8" stroke="currentColor" stroke-width="1.4"></line></svg></span><span data-wact="max" title="Agrandir" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease);" style-hover="background:rgba(3,20,29,0.16);"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="2.2" y="2.2" width="6.6" height="6.6" stroke="currentColor" stroke-width="1.4"></rect></svg></span><span data-wact="close" title="Fermer" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);" style-hover="background:#e84343; color:#fff;"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><line x1="2.6" y1="2.6" x2="8.4" y2="8.4" stroke="currentColor" stroke-width="1.4"></line><line x1="8.4" y1="2.6" x2="2.6" y2="8.4" stroke="currentColor" stroke-width="1.4"></line></svg></span></span>
