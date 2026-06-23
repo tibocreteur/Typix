@@ -118,7 +118,10 @@
     body { overflow-x: hidden; }
     [data-anim="header"] { top: 0 !important; left: 0 !important; right: 0 !important; justify-content: space-between !important; gap: 12px !important; padding: 12px 16px !important; background: #000 !important; border: none !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
     [data-anim="header"] img[alt="After Effects"], [data-anim="header"] span { display: none !important; }
-    [data-m="header-cta"] { display: flex !important; }
+    [data-m="header-cta"] { display: flex !important; order: 1 !important; }
+    /* bouton langue : meme hauteur que Obtenir + label FR/EN visible */
+    [data-m="lang"] { height: 36px !important; padding: 0 12px !important; font-size: 13px !important; gap: 8px !important; width: auto !important; flex: none !important; white-space: nowrap !important; order: 2 !important; }
+    [data-m="lang"] span { display: inline !important; }
     /* le hero démarre sous le header plein écran */
     [data-sec="hero"], section[style*="100dvh"] { min-height: 100dvh !important; }
     /* --- allègement mobile : on enlève le superflu --- */
@@ -256,7 +259,7 @@
       <img src="assets/logo-ae.png" alt="After Effects" style="height:26px; width:auto; display:block;">
     </a>
     <div style="display:flex; align-items:center; gap:10px; margin-left:auto; pointer-events:auto;">
-      <button data-i18n-skip="" onClick="{{ toggleLang }}" type="button" title="Français / English" style="display:inline-flex; align-items:center; gap:7px; font-family: var(--font-mono); font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color: var(--neon); background: rgba(1,2,4,0.35); border:1px solid var(--bd); padding:8px 11px; cursor:pointer; transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);" style-hover="border-color: var(--neon); color:#f3fbff;"><i class="fa-solid fa-globe" style="font-size:11px;"></i>{{ langLabel }}</button>
+      <button data-m="lang" data-i18n-skip="" onClick="{{ toggleLang }}" type="button" title="Français / English" style="display:inline-flex; align-items:center; gap:7px; font-family: var(--font-mono); font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color: var(--neon); background: rgba(1,2,4,0.35); border:1px solid var(--bd); padding:8px 11px; cursor:pointer; transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);" style-hover="border-color: var(--neon); color:#f3fbff;"><i class="fa-solid fa-globe" style="font-size:11px;"></i>{{ langLabel }}</button>
       <a data-m="header-cta" data-buy="" href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:none; align-items:center; gap:8px; pointer-events:auto; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#06080c; background:#fff; border:1px solid var(--neon); padding:9px 14px; text-decoration:none; white-space:nowrap;"><i class="fa-solid fa-download" style="font-size:11px;"></i>Obtenir</a>
     </div>
   </header>
@@ -609,7 +612,7 @@ en quelques clics." style="font-size: clamp(28px, 4vw, 52px); line-height:1.05; 
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900},&quot;buyUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#inclus&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900},&quot;buyUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://tibodesign.gumroad.com/l/Typix&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { hue: 0, legal: null, lang: (typeof localStorage !== 'undefined' && localStorage.getItem('typix_lang') === 'en') ? 'en' : 'fr' };
   _startAscii() {
@@ -1101,7 +1104,7 @@ class Component extends DCLogic {
   renderVals() {
     this._startAscii();
     const hue = this.state.hue;
-    const buyUrl = (this.props.buyUrl && String(this.props.buyUrl).trim()) || '#inclus';
+    const buyUrl = (this.props.buyUrl && String(this.props.buyUrl).trim()) || 'https://tibodesign.gumroad.com/l/Typix';
     const buyExternal = /^https?:/i.test(buyUrl);
     return {
       hue: hue,
