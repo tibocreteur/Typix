@@ -24,10 +24,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="_ds/tibz-design-system-f71353c5-d29d-4068-ba9e-c0c3846224d4/_ds_bundle.js"></script>
 <style>
-  html { scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; }
+  html { scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; overflow-x: clip; }
   html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; display: none; }
-  html, body { margin:0; min-height:100%; background: #010204 !important; overflow-x: hidden; max-width: 100%; }
-  body { overflow-x: hidden; }
+  html, body { margin:0; min-height:100%; background: #010204 !important; }
   /* fond de secours fixe : aucun gap clair possible (toggle plein écran Arc, etc.) */
   body::before { content:""; position:fixed; inset:-10vh 0; z-index:-1; background:#010204; pointer-events:none; }
   ::selection { background: #5cd6ff; color: #03141d; }
@@ -96,8 +95,9 @@
     [data-m="herowin-pad"] { padding: 22px 18px !important; }
     [data-m="herologos"] img:first-of-type { width: min(54vw, 200px) !important; }
     [data-m="herologos"] span, [data-m="herologos"] img:last-of-type { display: none !important; }
-    /* prix */
-    [data-m="price"] span:first-child { font-size: 46px !important; }
+    /* prix : seul le 15€ est agrandi (pas le 20€ barré) */
+    [data-m="price"] { flex-wrap: wrap !important; gap: 12px 14px !important; }
+    [data-m="price"] > span:first-child { font-size: 52px !important; }
     /* header : logo seul, compact */
     [data-anim="header"] img:last-of-type, [data-anim="header"] span { display: none !important; }
     [data-anim="header"] { top: 0 !important; padding: 14px 16px !important; }
@@ -115,6 +115,7 @@
     [data-anim="buybtn"] { display: none !important; }
     /* header mobile : pas de bande bleue, header plein, logo + OBTENIR */
     [data-anim="banner"] { display: none !important; }
+    body { overflow-x: hidden; }
     [data-anim="header"] { top: 0 !important; left: 0 !important; right: 0 !important; justify-content: space-between !important; gap: 12px !important; padding: 12px 16px !important; background: #000 !important; border: none !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
     [data-anim="header"] img[alt="After Effects"], [data-anim="header"] span { display: none !important; }
     [data-m="header-cta"] { display: flex !important; }
@@ -129,11 +130,31 @@
     /* neutralise les décalages latéraux qui font déborder à droite */
     [data-sec] { transform: none !important; margin-left: auto !important; margin-right: auto !important; }
     [data-grid="split"] > div, [data-window] { min-width: 0 !important; }
+    /* === allègement mobile demandé === */
+    /* header CTA : aucun effet néon */
+    [data-m="header-cta"] { border-color: transparent !important; box-shadow: none !important; filter: none !important; }
+    [data-m="header-cta"]:hover { filter: none !important; box-shadow: none !important; }
+    /* STYLES : épuré (pas de badge, pas de légende, nombre pair) */
+    [data-grid="demos"] figure { border: none !important; }
+    [data-grid="demos"] figure > div:first-child > span { display: none !important; }
+    [data-grid="demos"] figure > div:last-child { display: none !important; }
+    [data-grid="demos"] > figure:nth-of-type(6) { display: none !important; }
+    /* SPECS : minimal (icône + titre, 2 colonnes) */
+    [data-grid="feat4"] { grid-template-columns: 1fr 1fr !important; }
+    [data-grid="feat4"] > div { min-height: 0 !important; padding: 18px 16px !important; gap: 10px !important; border-top: 1px solid var(--bd-soft) !important; }
+    [data-grid="feat4"] p { display: none !important; }
+    [data-grid="feat4"] h3 + span { display: none !important; }
+    /* INSTALL : minimal (étape + titre) */
+    [data-grid="steps3"] > div { padding: 16px !important; gap: 5px !important; }
+    [data-grid="steps3"] p { display: none !important; }
+    [data-grid="steps3"] span[style*="46px"] { display: none !important; }
+    /* footer CTA : juste « Obtenir Typix » blanc, sans la partie prix */
+    [data-m="btnprice"] { display: none !important; }
   }
 </style>
 </helmet>
 
-<div style="--bg:#010204; --panel:#070b11; --panel-2:#0a0f17; --bd:rgba(92,214,255,0.34); --bd-soft:rgba(92,214,255,0.16); --neon:#5cd6ff; --neon-soft:#a9e8ff; --neon-ink:#03141d; --txt:#cfe6f5; --txt-mute:#7ba0b8; --txt-faint:#496678; font-family: var(--font-mono); color: var(--txt); background: var(--bg); letter-spacing: var(--track-tight); position: relative; overflow-x: clip;">
+<div style="--bg:#010204; --panel:#070b11; --panel-2:#0a0f17; --bd:rgba(92,214,255,0.34); --bd-soft:rgba(92,214,255,0.16); --neon:#5cd6ff; --neon-soft:#a9e8ff; --neon-ink:#03141d; --txt:#cfe6f5; --txt-mute:#7ba0b8; --txt-faint:#496678; font-family: var(--font-mono); color: var(--txt); background: var(--bg); letter-spacing: var(--track-tight); position: relative;" data-i18n-root="">
 
   <div class="typix-scan"></div>
 
@@ -234,7 +255,10 @@
       <span style="width:1px; height:22px; background: rgba(255,255,255,0.25); display:block;"></span>
       <img src="assets/logo-ae.png" alt="After Effects" style="height:26px; width:auto; display:block;">
     </a>
-    <a data-m="header-cta" data-buy="" href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:none; align-items:center; gap:8px; pointer-events:auto; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#06080c; background:#fff; border:1px solid var(--neon); padding:9px 14px; text-decoration:none; white-space:nowrap;"><i class="fa-solid fa-download" style="font-size:11px;"></i>Obtenir</a>
+    <div style="display:flex; align-items:center; gap:10px; margin-left:auto; pointer-events:auto;">
+      <button data-i18n-skip="" onClick="{{ toggleLang }}" type="button" title="Français / English" style="display:inline-flex; align-items:center; gap:7px; font-family: var(--font-mono); font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color: var(--neon); background: rgba(1,2,4,0.35); border:1px solid var(--bd); padding:8px 11px; cursor:pointer; transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);" style-hover="border-color: var(--neon); color:#f3fbff;"><i class="fa-solid fa-globe" style="font-size:11px;"></i>{{ langLabel }}</button>
+      <a data-m="header-cta" data-buy="" href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:none; align-items:center; gap:8px; pointer-events:auto; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#06080c; background:#fff; border:1px solid var(--neon); padding:9px 14px; text-decoration:none; white-space:nowrap;"><i class="fa-solid fa-download" style="font-size:11px;"></i>Obtenir</a>
+    </div>
   </header>
 
   <!-- ====== HERO — DOS boot window ====== -->
@@ -339,7 +363,7 @@
         <sc-for list="{{ features }}" as="f" hint-placeholder-count="4">
           <div style="padding:24px; display:flex; flex-direction:column; gap:13px; min-height:194px; border-right:1px solid var(--bd-soft); border-top:1px solid var(--bd-soft);">
             <i class="{{ f.icon }}" style="font-size:24px; color: var(--neon);"></i>
-            <h3 style="font-size:16px; margin:2px 0 0; letter-spacing:-0.02em; color:#f3fbff;">{{ f.title }}</h3>
+            <h3 style="font-size:16px; margin:2px 0 0; letter-spacing:-0.02em; color:#f3fbff; white-space:pre-line;">{{ f.title }}</h3>
             <span style="width:32px; height:3px; background: {{ f.stick }}; display:block;"></span>
             <p style="font-size:13px; line-height: var(--leading-snug); color: var(--txt-mute); margin:0;">{{ f.desc }}</p>
           </div>
@@ -524,7 +548,7 @@ en quelques clics." style="font-size: clamp(28px, 4vw, 52px); line-height:1.05; 
         <p style="font-size:14px; line-height: var(--leading-body); color: var(--txt-mute); margin:0 auto 30px; max-width:46ch;">18 styles, contrôles 100% custom, installateur inclus. Accès immédiat après l'achat.</p>
         <a data-buy="" href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:inline-flex; align-items:stretch; white-space:nowrap; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#06080c; background:#fff; text-decoration:none; border:1px solid var(--neon); transition: filter var(--dur-fast) var(--ease);" style-hover="filter: brightness(1.03) drop-shadow(0 0 7px rgba(92,214,255,0.32));">
           <span style="display:inline-flex; align-items:center; gap:10px; padding:16px 24px;"><i class="fa-solid fa-download" style="font-size:12px;"></i>Obtenir Typix</span>
-          <span style="display:inline-flex; align-items:center; gap:8px; padding:16px 22px; background:#06080c; color:#fff;"><span style="text-decoration:line-through; opacity:.45; font-size:12px;">20€</span><span style="font-size:16px; color: var(--neon);">15€</span> <span style="color: var(--neon);">→</span></span>
+          <span data-m="btnprice" style="display:inline-flex; align-items:center; gap:8px; padding:16px 22px; background:#06080c; color:#fff;"><span style="text-decoration:line-through; opacity:.45; font-size:12px;">20€</span><span style="font-size:16px; color: var(--neon);">15€</span> <span style="color: var(--neon);">→</span></span>
         </a>
       </div>
       <!-- barre du bas -->
@@ -587,7 +611,7 @@ en quelques clics." style="font-size: clamp(28px, 4vw, 52px); line-height:1.05; 
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900},&quot;buyUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#inclus&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
-  state = { hue: 0, legal: null };
+  state = { hue: 0, legal: null, lang: (typeof localStorage !== 'undefined' && localStorage.getItem('typix_lang') === 'en') ? 'en' : 'fr' };
   _startAscii() {
     if (this._asciiStarted) return;
     this._asciiStarted = true;
@@ -717,6 +741,7 @@ class Component extends DCLogic {
           playIn('[data-anim="header"]', 'typixDropIn 0.6s cubic-bezier(0.22,1,0.36,1) 0.26s both');
           playIn('[data-anim="herowin"]', 'typixPopIn 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.3s both');
           playIn('[data-anim="buybtn"]', 'typixPopIn 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.5s both');
+          if (this.state.lang === 'en') this._applyLang('en');
         }, 760);
 
         // retrait du loader + déverrouillage du scroll
@@ -758,6 +783,114 @@ class Component extends DCLogic {
 
     // filet de sécurité : ne jamais rester bloqué sur le loader
     this._preloadGuard = setTimeout(() => finish(), 30000);
+  }
+
+  _i18nDict() {
+    return {
+      'Obtenir': 'Get it',
+      'Obtenir Typix': 'Get Typix',
+      'Un véritable': 'A true',
+      "moteur d'effet": 'effects engine',
+      "pour After Effects. Presets prêts à poser et contrôles 100% custom (densité, charset, couleur) pour une signature visuelle qui t'appartient.": "for After Effects. Ready-to-use presets and full 100% custom controls (density, charset, color) for a visual signature that's yours alone.",
+      '> Teinte': '> Hue',
+      'Style inclus': 'Included',
+      "+ 9 AUTRES STYLES INCLUS DANS L'EFFET": '+ 9 MORE STYLES INCLUDED IN THE EFFECT',
+      '+ encore': '+ more',
+      'Blocs': 'Blocks', 'Points': 'Dots', 'Binaire': 'Binary', 'Néon': 'Neon', 'Rétro': 'Retro',
+      '▓ SPECS.SYS · CONTRÔLE TOTAL': '▓ SPECS.SYS · FULL CONTROL',
+      '▓ CUSTOM.FX · TUILES PERSO': '▓ CUSTOM.FX · CUSTOM TILES',
+      '▓ INSTALL.SH · 3 ÉTAPES': '▓ INSTALL.SH · 3 STEPS',
+      'Presets\n+ custom': 'Presets\n+ custom',
+      'Charsets\nau choix': 'Charsets\nyou pick',
+      'Couleur\nou mono': 'Color\nor mono',
+      'Rendu\nrapide': 'Fast\nrender',
+      'Des réglages prêts à poser, ou tu ouvres tout : densité, taille, contraste.': 'Ready-to-use settings, or open everything: density, size, contrast.',
+      'Standard, blocs, binaire, ou ton propre jeu de caractères.': 'Standard, blocks, binary, or your own character set.',
+      "Garde les couleurs de la source, ou passe en monochrome d'un clic.": 'Keep the source colors, or switch to monochrome in one click.',
+      'Optimisé pour rester fluide en preview comme à l’export.': 'Optimized to stay smooth in preview and on export.',
+      'Crée tes propres tuiles.': 'Create your own tiles.',
+      'Compose une': 'Build a',
+      'bande de tuiles': 'tile strip',
+      "(du plus sombre au plus clair), relie-la à l'effet et masque ta compo de base. Typix reconstruit ta vidéo avec": "(darkest to lightest), link it to the effect and hide your base comp. Typix rebuilds your video with",
+      'tes propres motifs': 'your own patterns',
+      '.01 > COMPOSE TA BANDE': '.01 > BUILD YOUR STRIP',
+      'du plus sombre au plus clair': 'darkest to lightest',
+      'TUILES CUSTOM': 'CUSTOM TILES',
+      '100% ANIMÉ': '100% ANIMATED',
+      '.02 > LE RENDU': '.02 > THE RESULT',
+      "Lance l’installateur": 'Run the installer',
+      'Double-clic, puis ferme et rouvre After Effects. L’effet apparaît dans Effets › Stylize › TYPIX.': 'Double-click, then close and reopen After Effects. The effect shows up in Effects › Stylize › TYPIX.',
+      'Glisse l’effet': 'Drop the effect',
+      'Dépose Typix sur n’importe quel calque vidéo, image ou compo.': 'Drop Typix onto any video layer, image or comp.',
+      'Choisis ou règle': 'Pick or tweak',
+      'Pars d’un preset, puis ajuste densité, charset et couleur à ta sauce.': 'Start from a preset, then tweak density, charset and color your way.',
+      '// coût total': '// total cost',
+      'Paiement unique · Accès à vie · MàJ incluses': 'One-time payment · Lifetime access · Updates included',
+      'En achetant, tu acceptes la livraison immédiate du fichier et tu renonces à ton droit de rétractation. Paiement et facture gérés par Lemon Squeezy.': 'By purchasing, you agree to immediate delivery of the file and waive your right of withdrawal. Payment and invoicing handled by Lemon Squeezy.',
+      'Paiement 100% sécurisé': '100% secure payment',
+      'Accès immédiat après achat': 'Instant access after purchase',
+      'Nouvelles versions par mail, gratuites à vie': 'New versions by email, free for life',
+      'Paiement via Lemon Squeezy': 'Paid via Lemon Squeezy',
+      "Un seul téléchargement, un installateur, et l'effet apparaît dans": 'One download, one installer, and the effect shows up in',
+      '. Pas de manip compliquée.': '. No complicated setup.',
+      '// configuration requise': '// system requirements',
+      'Installateur': 'Installer', 'Install 1-clic': '1-click install',
+      'Désinstallateur': 'Uninstaller', 'Retrait propre': 'Clean removal',
+      'Licence': 'License', 'Perso & commercial': 'Personal & commercial',
+      'Presets + custom': 'Presets + custom',
+      '// prêt à transformer tes vidéos ?': '// ready to transform your videos?',
+      "18 styles, contrôles 100% custom, installateur inclus. Accès immédiat après l'achat.": '18 styles, 100% custom controls, installer included. Instant access after purchase.',
+      'Mentions légales': 'Legal notice', 'CGV': 'Terms', 'Confidentialité': 'Privacy',
+      'Nous contacter': 'Contact us',
+      'Quelle version d’After Effects ?': 'Which After Effects version?',
+      'Typix s’installe sur After Effects (testé jusqu’à la version 2026). Après l’installation, ferme et rouvre AE : l’effet apparaît dans Effets › Stylize › TYPIX.': 'Typix installs on After Effects (tested up to version 2026). After installing, close and reopen AE: the effect appears in Effects › Stylize › TYPIX.',
+      'C’est un plugin ou un preset ?': 'Is it a plugin or a preset?',
+      'C’est un effet .AEX installé via l’installateur fourni. Il apparaît comme un effet natif dans Effets › Stylize › TYPIX, et se glisse sur n’importe quel calque.': 'It’s an .AEX effect installed via the included installer. It appears as a native effect in Effects › Stylize › TYPIX, and drops onto any layer.',
+      'Mac et Windows ?': 'Mac and Windows?',
+      'Oui, le pack contient l’installateur adapté à ta plateforme.': 'Yes, the pack includes the installer for your platform.',
+      'Comment je reçois le fichier ?': 'How do I receive the file?',
+      'Après le paiement sur Lemon Squeezy, tu reçois immédiatement un lien de téléchargement du zip (effet, installateur, désinstallateur et licence).': 'After payment on Lemon Squeezy, you instantly get a download link for the zip (effect, installer, uninstaller and license).',
+      'Les mises à jour sont incluses ?': 'Are updates included?',
+      'Oui. Les futures versions de Typix sont incluses, accessibles depuis le même lien.': 'Yes. Future versions of Typix are included, accessible from the same link.',
+      'Je peux l’utiliser pour des clients ?': 'Can I use it for clients?',
+      'Oui, la licence couvre l’usage personnel et commercial. Seule la revente ou la redistribution du fichier est interdite.': 'Yes, the license covers personal and commercial use. Only reselling or redistributing the file is forbidden.'
+    };
+  }
+
+  _applyLang(lang) {
+    const dict = this._dict || (this._dict = this._i18nDict());
+    const root = document.querySelector('[data-i18n-root]') || document.body;
+    const skip = (el) => el && el.nodeType === 1 && (el.nodeName === 'SCRIPT' || el.nodeName === 'STYLE' || el.nodeName === 'NOSCRIPT' || (el.hasAttribute && (el.hasAttribute('data-i18n-skip') || el.hasAttribute('data-loader') || el.hasAttribute('data-split'))));
+    const walk = (node) => {
+      for (let c = node.firstChild; c; c = c.nextSibling) {
+        if (c.nodeType === 3) {
+          const raw = c.nodeValue; const t = raw.trim();
+          if (!t) continue;
+          if (lang === 'en') {
+            if (c.__fr === undefined && dict[t] !== undefined && dict[t] !== t) { c.__fr = raw; c.nodeValue = raw.replace(t, dict[t]); }
+          } else if (c.__fr !== undefined) { c.nodeValue = c.__fr; c.__fr = undefined; }
+        } else if (c.nodeType === 1 && !skip(c)) { walk(c); }
+      }
+    };
+    walk(root);
+    // titre H2 animé (SplitText) : on régénère avec la bonne langue
+    const h2 = document.querySelector('[data-split]');
+    if (h2) {
+      const fr = 'Transforme tes vidéos\nen quelques clics.';
+      const en = 'Transform your videos\nin just a few clicks.';
+      const want = lang === 'en' ? en : fr;
+      if (h2.getAttribute('data-split-text') !== want) {
+        h2.setAttribute('data-split-text', want);
+        h2.dataset.splitReady = ''; h2.dataset.splitShown = '';
+        if (this._prepSplit) this._prepSplit(h2);
+        if (this._splitCheck) this._splitCheck();
+      }
+    }
+    document.documentElement.lang = lang;
+  }
+
+  componentDidUpdate() {
+    if (this.state.lang === 'en') this._applyLang('en');
   }
 
   componentDidMount() {
@@ -976,9 +1109,12 @@ class Component extends DCLogic {
       hueLabel: hue === 0 ? 'Original' : hue + '°',
       onHue: (e) => this.setState({ hue: parseInt(e.target.value, 10) || 0 }),
       onLogoTop: (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      lang: this.state.lang,
+      langLabel: this.state.lang === 'en' ? 'FR' : 'EN',
+      toggleLang: (e) => { if (e && e.preventDefault) e.preventDefault(); const next = this.state.lang === 'en' ? 'fr' : 'en'; try { localStorage.setItem('typix_lang', next); } catch (x) {} this._applyLang(next); this.setState({ lang: next }); },
       legal: this.state.legal,
       legalOpen: !!this.state.legal,
-      legalTitle: this.state.legal === 'mentions' ? 'Mentions légales' : this.state.legal === 'cgv' ? 'Conditions générales de vente' : this.state.legal === 'privacy' ? 'Politique de confidentialité' : '',
+      legalTitle: (this.state.lang === 'en') ? (this.state.legal === 'mentions' ? 'Legal notice' : this.state.legal === 'cgv' ? 'Terms of sale' : this.state.legal === 'privacy' ? 'Privacy policy' : '') : (this.state.legal === 'mentions' ? 'Mentions légales' : this.state.legal === 'cgv' ? 'Conditions générales de vente' : this.state.legal === 'privacy' ? 'Politique de confidentialité' : ''),
       isMentions: this.state.legal === 'mentions',
       isCgv: this.state.legal === 'cgv',
       isPrivacy: this.state.legal === 'privacy',
@@ -1011,10 +1147,10 @@ class Component extends DCLogic {
         { label: 'POINTS', swatch: '·∙●', set: '· ∙ ● ', ramp: ' \u00b7\u2219\u25cf', mode: 'plasma', seed: 18, mono: '' },
       ],
       features: [
-        { icon: 'fa-solid fa-sliders', tag: 'CTRL', title: 'Presets + custom', stick: '#5cd6ff', desc: 'Des réglages prêts à poser, ou tu ouvres tout : densité, taille, contraste.' },
-        { icon: 'fa-solid fa-font', tag: 'CHAR', title: 'Charsets au choix', stick: '#7defff', desc: 'Standard, blocs, binaire, ou ton propre jeu de caractères.' },
-        { icon: 'fa-solid fa-palette', tag: 'COL', title: 'Couleur ou mono', stick: '#a9e8ff', desc: "Garde les couleurs de la source, ou passe en monochrome d'un clic." },
-        { icon: 'fa-solid fa-bolt', tag: 'GPU', title: 'Rendu rapide', stick: '#39b8ff', desc: 'Optimisé pour rester fluide en preview comme à l\u2019export.' },
+        { icon: 'fa-solid fa-sliders', tag: 'CTRL', title: 'Presets\n+ custom', stick: '#5cd6ff', desc: 'Des réglages prêts à poser, ou tu ouvres tout : densité, taille, contraste.' },
+        { icon: 'fa-solid fa-font', tag: 'CHAR', title: 'Charsets\nau choix', stick: '#7defff', desc: 'Standard, blocs, binaire, ou ton propre jeu de caractères.' },
+        { icon: 'fa-solid fa-palette', tag: 'COL', title: 'Couleur\nou mono', stick: '#a9e8ff', desc: "Garde les couleurs de la source, ou passe en monochrome d'un clic." },
+        { icon: 'fa-solid fa-bolt', tag: 'GPU', title: 'Rendu\nrapide', stick: '#39b8ff', desc: 'Optimisé pour rester fluide en preview comme à l’export.' },
       ],
       steps: [
         { n: '1', big: '01', title: 'Lance l\u2019installateur', desc: 'Double-clic, puis ferme et rouvre After Effects. L\u2019effet apparaît dans Effets › Stylize › TYPIX.' },
