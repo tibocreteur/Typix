@@ -723,6 +723,20 @@ class Component extends DCLogic {
       if (this._loaderTick) { clearInterval(this._loaderTick); this._loaderTick = null; }
       setBar(1, 'OK · LANCEMENT');
       if (this._bindVideos) this._bindVideos();
+      // Synchroniser les 9 videos PENDANT que le loader couvre l'ecran (aucun saut visible)
+      this._syncUnderLoader = (tries) => {
+        if (this._initialSyncDone) return;
+        if (this._bindVideos) this._bindVideos();
+        const vids = Array.prototype.slice.call(document.querySelectorAll('video[data-vsrc]'));
+        const allReady = vids.length && vids.every((v) => v.readyState >= 3);
+        if (allReady || tries > 10) {
+          this._initialSyncDone = true;
+          if (this._syncNow) this._syncNow();
+        } else {
+          setTimeout(() => this._syncUnderLoader(tries + 1), 80);
+        }
+      };
+      this._syncUnderLoader(0);
       setTimeout(() => {
         if (!loader) { if (this._revealCheck) this._revealCheck(); return; }
         const htmlEl = document.documentElement;
@@ -913,15 +927,37 @@ class Component extends DCLogic {
         const p = v.play && v.play(); if (p && p.catch) p.catch(() => {});
       });
     };
-    let vb = 0;
-    this._videoBoot = setInterval(() => { if (this._preloadDone) { this._bindVideos(); } if (++vb > 60) clearInterval(this._videoBoot); }, 150);
-
-    // --- Resynchro des 9 videos toutes les 5 min : retour a 0 simultane ---
-    this._syncTimer = setInterval(() => {
-      document.querySelectorAll('video[data-vsrc]').forEach((v) => {
-        try { v.currentTime = 0; const p = v.play && v.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {}
+    // --- Lancement synchronise des 9 videos : meme currentTime, demarrage simultane ---
+    this._syncNow = () => {
+      const vids = Array.prototype.slice.call(document.querySelectorAll('video[data-vsrc]'));
+      if (!vids.length) return;
+      vids.forEach((v) => { try { v.pause(); v.currentTime = 0; } catch (e) {} });
+      requestAnimationFrame(() => {
+        vids.forEach((v) => { const p = v.play && v.play(); if (p && p.catch) p.catch(() => {}); });
       });
-    }, 300000);
+    };
+    this._tryInitialSync = () => {
+      if (this._initialSyncDone) return;
+      const vids = Array.prototype.slice.call(document.querySelectorAll('video[data-vsrc]'));
+      if (!vids.length) return;
+      const allBound = vids.every((v) => { const w = v.getAttribute('data-vsrc') || ''; return w && !/\{\{/.test(w) && v.getAttribute('src') === w; });
+      if (!allBound) return;
+      const allReady = vids.every((v) => v.readyState >= 3);
+      const elapsed = Date.now() - (this._bindStart || Date.now());
+      if (allReady || elapsed > 5000) { this._initialSyncDone = true; this._syncNow(); }
+    };
+    let vb = 0;
+    this._videoBoot = setInterval(() => {
+      if (this._preloadDone) {
+        if (!this._bindStart) this._bindStart = Date.now();
+        this._bindVideos();
+        this._tryInitialSync();
+      }
+      if (++vb > 90) clearInterval(this._videoBoot);
+    }, 150);
+
+    // --- Resynchro des 9 videos toutes les 5 min ---
+    this._syncTimer = setInterval(() => { if (this._syncNow) this._syncNow(); }, 300000);
     // --- Révélation au scroll (rejoue à chaque passage) ---
     // On requête le DOM à chaque passe (le framework peut remplacer les nœuds).
     this._prepReveal = (el) => {
