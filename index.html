@@ -332,9 +332,9 @@
       </div>
       <div style="padding:20px; display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; --demoHue: {{ hueDeg }};" data-grid="demos">
         <sc-for list="{{ demos }}" as="d" hint-placeholder-count="0">
-          <figure style="margin:0; border:1px solid var(--bd-soft); background:#000;">
-            <div style="position:relative; aspect-ratio:1/1; background:#000; overflow:hidden;">
-              <video data-reveal="pop" data-reveal-delay="{{ d.delay }}" data-vsrc="{{ d.src }}" autoplay="" loop="" muted="" playsinline="" preload="metadata" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center 58%; display:block; filter: hue-rotate(var(--demoHue, 0deg));"></video>
+          <figure style="margin:0; border:1px solid var(--bd-soft); background:#03050a;">
+            <div style="position:relative; aspect-ratio:1/1; background:#03050a; overflow:hidden;">
+              <video data-reveal="pop" data-reveal-delay="{{ d.delay }}" data-vsrc="{{ d.src }}" autoplay="" loop="" muted="" playsinline="" preload="metadata" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center 58%; display:block; mix-blend-mode: screen; filter: hue-rotate(var(--demoHue, 0deg));"></video>
               <span style="position:absolute; top:8px; left:8px; font-size:9px; font-weight:700; letter-spacing: var(--track-wide); text-transform:uppercase; color: var(--neon-ink); background: var(--neon); padding:3px 7px;">Style inclus</span>
             </div>
             <div style="display:flex; align-items:center; gap:8px; padding:8px 10px; border-top:1px solid var(--bd-soft); font-size:11px; color: var(--txt-mute); letter-spacing: var(--track-tight);">
@@ -391,8 +391,8 @@
           </div>
           <div>
             <div data-reveal="up" data-reveal-text="" data-reveal-delay="80" style="font-size:11px; font-weight:700; letter-spacing: var(--track-tight); color: var(--neon); margin-bottom:8px;">.01 &gt; COMPOSE TA BANDE</div>
-            <div style="border:1px solid var(--bd); background:#0c1117; padding:10px;">
-              <video src="https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/custom-trame.mp4" autoplay="" loop="" muted="" playsinline="" style="display:block; width:100%; height:auto;"></video>
+            <div style="border:1px solid var(--bd); background:#03050a; padding:10px;">
+              <video src="https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/custom-trame.mp4" autoplay="" loop="" muted="" playsinline="" style="display:block; width:100%; height:auto; mix-blend-mode: screen;"></video>
             </div>
             <div style="display:flex; align-items:center; gap:8px; margin-top:7px; font-size:10px; color: var(--txt-faint); letter-spacing: var(--track-tight); text-transform:uppercase;"><span style="color: var(--neon);">└</span> du plus sombre au plus clair</div>
           </div>
@@ -404,8 +404,8 @@
         <!-- colonne droite : rendu -->
         <div>
           <div data-reveal="up" data-reveal-text="" data-reveal-delay="80" style="font-size:11px; font-weight:700; letter-spacing: var(--track-tight); color: var(--neon); margin-bottom:8px;">.02 &gt; LE RENDU</div>
-          <div style="position:relative; background:#000; border:1px solid var(--bd); overflow:hidden;">
-            <video src="https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/custom-rendu.mp4" autoplay="" loop="" muted="" playsinline="" style="display:block; width:100%; height:auto;"></video>
+          <div style="position:relative; background:#03050a; border:1px solid var(--bd); overflow:hidden;">
+            <video src="https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/custom-rendu.mp4" autoplay="" loop="" muted="" playsinline="" style="display:block; width:100%; height:auto; mix-blend-mode: screen;"></video>
             <span style="position:absolute; top:10px; right:12px; display:inline-flex; align-items:center; gap:6px; font-size:10px; font-weight:700; letter-spacing: var(--track-wide); color: var(--neon-soft); background: rgba(1,2,4,0.55); padding:4px 8px;"><span style="width:6px;height:6px;border-radius:50%; background: var(--neon); animation: typixPulse 1.5s infinite;"></span>RENDER</span>
           </div>
         </div>
