@@ -1,8 +1,32 @@
 {
-  "prix": 10,
-  "promo": false,
-  "prixPromo": 15,
+  "note_prix":        "═══ PRIX & PROMO ═══  ·  prix = prix plein · promo = activer l'offre · prixPromo = prix soldé · devise = symbole",
+  "prix": 15,
+  "promo": true,
+  "prixPromo": 10,
   "devise": "€",
+
+  "note_achat":       "═══ LIEN D'ACHAT ═══  ·  lienAchat = URL du bouton Obtenir · ouvrirNouvelOnglet = ouvrir dans un nouvel onglet (true/false)",
   "lienAchat": "https://tibodesign.gumroad.com/l/Typix",
-  "bandeauActif": false
+  "ouvrirNouvelOnglet": true,
+
+  "note_paiement":    "═══ PAIEMENT ═══  ·  plateformePaiement = nom du prestataire affiché dans les CGV, mentions légales, FAQ et checkout (ex: Gumroad, Lemon Squeezy). Remplace le nom partout automatiquement.",
+  "plateformePaiement": "Lemon Squeezy",
+
+  "note_bandeau":     "═══ BANNIÈRE DU HAUT ═══  ·  bandeauActif = afficher la bande bleue · texteBandeau = son texte · vitesseBandeau = secondes par tour (plus grand = plus lent)",
+  "bandeauActif": false,
+  "texteBandeau": "OFFRE DE LANCEMENT",
+  "vitesseBandeau": 60,
+
+  "note_bouton":      "═══ BOUTON FLOTTANT ═══  ·  boutonFixeActif = afficher le bouton Obtenir en bas à droite (desktop)",
+  "boutonFixeActif": true,
+
+  "note_langue":      "═══ LANGUE ═══  ·  langueParDefaut = fr ou en (utilisée seulement si le visiteur n'a pas encore choisi)",
+  "langueParDefaut": "en",
+
+  "note_contact":     "═══ CONTACT ═══  ·  emailContact = adresse du lien « Nous contacter » + celle affichée dans les mentions légales / RGPD",
+  "emailContact": "contact@tibzdesign.fr",
+
+  "note_partage":     "═══ APERÇU DE PARTAGE ═══  ·  Le titre / texte / image affichés quand on partage le lien (Discord, réseaux…) vivent dans le <head> du index.html (balises og: et twitter:). Les réseaux ne lisent PAS ce fichier ni le JavaScript, donc ça se modifie DIRECTEMENT dans le HTML — demande-moi et je le change.",
+
+  "note_aide":        "═══ AIDE ═══  ·  Modifie une valeur puis pousse ce fichier sur GitHub. Les clés « note_… » sont des repères, ne pas les supprimer. Si promo = false, le prix barré et la remise disparaissent (la remise −X% est calculée toute seule)."
 }
