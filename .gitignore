@@ -1,2 +1,5 @@
 uploads/
 screenshots/
+node_modules/
+.env
+.env.local

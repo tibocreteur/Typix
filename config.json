@@ -6,11 +6,11 @@
   "devise": "€",
 
   "note_achat":       "═══ LIEN D'ACHAT ═══  ·  lienAchat = URL du bouton Obtenir · ouvrirNouvelOnglet = ouvrir dans un nouvel onglet (true/false)",
-  "lienAchat": "https://tibodesign.gumroad.com/l/Typix",
+  "lienAchat": "https://typix.lemonsqueezy.com/checkout",
   "ouvrirNouvelOnglet": true,
 
   "note_paiement":    "═══ PAIEMENT ═══  ·  plateformePaiement = nom du prestataire affiché dans les CGV, mentions légales, FAQ et checkout (ex: Gumroad, Lemon Squeezy). Remplace le nom partout automatiquement.",
-  "plateformePaiement": "Gumroad",
+  "plateformePaiement": "Lemon Squeezy",
 
   "note_bandeau":     "═══ BANNIÈRE DU HAUT ═══  ·  bandeauActif = afficher la bande bleue · texteBandeau = son texte · vitesseBandeau = secondes par tour (plus grand = plus lent)",
   "bandeauActif": false,
