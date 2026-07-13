@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Typix</title>
-<meta name="description" content="Transforme tes vidéos dans After Effects : 18 styles prêts à poser et un mode 100% custom, animé image par image. Installateur, licence et guide inclus.">
+<meta name="description" content="Transforme tes vidéos dans After Effects : 18 styles prêts à poser et un mode 100% custom, animé image par image. Installateur, licence et guide inclus. Offre de lancement 15€ au lieu de 20€.">
 <link rel="icon" type="image/png" href="assets/favicon.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=2">
 <meta name="msapplication-TileImage" content="assets/speeddial.png?v=2">
@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Typix">
 <meta property="og:url" content="https://tibocreteur.github.io/Typix/">
 <meta property="og:title" content="Typix · Moteur d'effet pour After Effects">
-<meta property="og:description" content="18 styles prêts à poser + un mode 100% custom, animé image par image. Installateur et guide inclus.">
+<meta property="og:description" content="18 styles prêts à poser + un mode 100% custom, animé image par image. Installateur et guide inclus. Offre de lancement 15€ au lieu de 20€.">
 <meta property="og:image" content="https://tibocreteur.github.io/Typix/assets/og-typix.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -130,6 +130,7 @@
     [data-anim="banner"] { display: none !important; }
     [data-anim="banner-spacer"] { display: none !important; }
     body { overflow-x: hidden; }
+    #pixelblast { display: none !important; }
     [data-anim="header"] { top: 0 !important; left: 0 !important; right: 0 !important; justify-content: space-between !important; gap: 12px !important; padding: 12px 16px !important; background: #000 !important; border: none !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
     [data-anim="header"] img[alt="After Effects"], [data-anim="header"] span { display: none !important; }
     [data-m="header-cta"] { display: flex !important; order: 1 !important; }
@@ -171,8 +172,9 @@
 </style>
 </helmet>
 
-<div style="--bg:#010204; --panel:#070b11; --panel-2:#0a0f17; --bd:rgba(92,214,255,0.34); --bd-soft:rgba(92,214,255,0.16); --neon:#5cd6ff; --neon-soft:#a9e8ff; --neon-ink:#03141d; --txt:#cfe6f5; --txt-mute:#7ba0b8; --txt-faint:#496678; font-family: var(--font-mono); color: var(--txt); background: var(--bg); letter-spacing: var(--track-tight); position: relative;" data-i18n-root="">
+<div style="--bg:#010204; --panel:#070b11; --panel-2:#0a0f17; --bd:rgba(92,214,255,0.34); --bd-soft:rgba(92,214,255,0.16); --neon:#5cd6ff; --neon-soft:#a9e8ff; --neon-ink:#03141d; --txt:#cfe6f5; --txt-mute:#7ba0b8; --txt-faint:#496678; font-family: var(--font-mono); color: var(--txt); letter-spacing: var(--track-tight); position: relative; z-index: 0;" data-i18n-root="">
 
+  <canvas id="pixelblast" aria-hidden="true" style="position:absolute; left:0; bottom:0; width:100%; height:100%; z-index:-1; pointer-events:none; display:block;"></canvas>
   <div class="typix-scan"></div>
 
   <!-- ====== Loader ASCII ====== -->
@@ -217,13 +219,7 @@
     <div style="position:absolute; top:52%; left:24px; opacity:0.12;">// HORIZONTAL<br>// VERTICAL<br>// PIXEL</div>
     <div style="position:absolute; top:60%; right:22px; opacity:0.12; text-align:right;">&amp; 2026<br>············<br>·······</div>
     <div style="position:absolute; top:64%; left:8%; opacity:0.14; letter-spacing:4px;">((((((((((</div>
-    <div style="position:absolute; top:70%; left:18px; opacity:0.12;">TYPIX_ _ _ FX_ _ _ENGINE<br>– – – – – – – – READY</div>
-    <div style="position:absolute; top:78%; right:24px; opacity:0.13; text-align:right;">·······<br>·······<br>= 01234</div>
-    <div style="position:absolute; top:84%; left:10%; opacity:0.14; letter-spacing:4px;">)))))))))) &nbsp;&nbsp; :)</div>
-    <div style="position:absolute; top:92%; left:18px; opacity:0.15;">//<br>TYPIX FX ENGINE<br>NUMBER 01 AES</div>
-    <div style="position:absolute; top:94%; right:20px; opacity:0.16; text-align:right;">RENDER OK</div>
     <div style="position:absolute; top:42%; left:50%; transform:translateX(-50%); opacity:0.05; font-size:clamp(60px,12vw,150px); letter-spacing:-0.04em; font-weight:700; white-space:nowrap;">(TYPIX)</div>
-    <div style="position:absolute; top:73%; right:8%; width:160px; height:46px; opacity:0.12; background: repeating-linear-gradient(90deg, var(--neon-soft) 0 2px, transparent 2px 5px);"></div>
     <div style="position:absolute; top:24%; left:6%; width:120px; height:34px; opacity:0.1; background: repeating-linear-gradient(90deg, var(--neon-soft) 0 2px, transparent 2px 6px);"></div>
 
     <!-- rampe de densité ASCII -->
@@ -239,7 +235,7 @@
     <!-- trame halftone -->
     <div style="position:absolute; top:12%; right:5%; width:130px; height:90px; opacity:0.12; background: radial-gradient(circle, var(--neon-soft) 28%, transparent 30%); background-size:13px 13px;"></div>
     <!-- colonne katakana (clin d'œil Matrix) -->
-    <div style="position:absolute; top:36%; right:4%; opacity:0.13; color:#7defb0; font-size:13px; line-height:1.5; text-align:center;">ﾀ<br>ﾅ<br>ｶ<br>ﾐ<br>ﾂ<br>ﾔ<br>ｿ<br>ﾈ</div>
+    <div style="position:absolute; top:36%; right:4%; opacity:0.13; font-size:13px; line-height:1.5; text-align:center;">ﾀ<br>ﾅ<br>ｶ<br>ﾐ<br>ﾂ<br>ﾔ<br>ｿ<br>ﾈ</div>
     <!-- grille de caractères -->
     <div style="position:absolute; top:67%; right:6%; opacity:0.1; font-size:11px; line-height:1.25; letter-spacing:2px; white-space:pre;">@%#*+=-:.  
 .:=+*#%@@%
@@ -248,7 +244,6 @@
     <!-- flux binaire -->
     <div style="position:absolute; top:48%; left:2%; opacity:0.1; font-size:11px; line-height:1.4; letter-spacing:2px; white-space:nowrap;">01001100<br>10110010<br>01101001<br>11010101</div>
     <!-- 18 styles -->
-    <div style="position:absolute; top:88%; right:7%; opacity:0.13; text-align:right; font-size:11px;">[ 18 STYLES ]<br>HALFTONE · KATAKANA<br>CIRCLES · LETTERS</div>
   </div>
 
   <!-- ====== Bouton fixe ====== -->
@@ -556,14 +551,14 @@
   </section>
 
   <!-- ====== Footer ====== -->
-  <footer style="background:#010204; color: var(--txt); padding:0 var(--gutter) 36px; box-sizing:border-box;">
+  <footer style="background:transparent; color: var(--txt); padding:0 var(--gutter) 36px; box-sizing:border-box;">
     <div style="max-width:1240px; margin:0 auto;">
       <!-- bloc de clôture / CTA -->
       <div style="padding:56px 40px; text-align:center; position:relative; overflow:hidden;">
         <div style="font-size:11px; font-weight:700; letter-spacing: var(--track-wide); text-transform:uppercase; color: var(--neon); margin-bottom:18px;">// prêt à transformer tes vidéos ?</div>
         <h2 data-split="" data-split-text="Transforme tes vidéos
 en quelques clics." style="font-size: clamp(28px, 4vw, 52px); line-height:1.05; letter-spacing:-0.03em; margin:0 auto 14px; color:#f3fbff;">Transforme tes vidéos en quelques clics.</h2>
-        <p style="font-size:14px; line-height: var(--leading-body); color: var(--txt-mute); margin:0 auto 30px; max-width:46ch;">18 styles, contrôles 100% custom, installateur inclus. Accès immédiat après l'achat.</p>
+        <p style="font-size:14px; line-height: var(--leading-body); color: #f3fbff; margin:0 auto 30px; max-width:46ch;">18 styles, contrôles 100% custom, installateur inclus. Accès immédiat après l'achat.</p>
         <a data-buy="" href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:inline-flex; align-items:stretch; white-space:nowrap; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#06080c; background:#fff; text-decoration:none; border:1px solid var(--neon); transition: filter var(--dur-fast) var(--ease);" style-hover="filter: brightness(1.03) drop-shadow(0 0 7px rgba(92,214,255,0.32));">
           <span style="display:inline-flex; align-items:center; gap:10px; padding:16px 24px;"><i class="fa-solid fa-download" style="font-size:12px;"></i>Obtenir Typix</span>
           <span data-m="btnprice" style="display:inline-flex; align-items:center; gap:8px; padding:16px 22px; background:#06080c; color:#fff;"><span data-price="full" style="text-decoration:line-through; opacity:.45; font-size:12px;">20€</span><span data-price="now" style="font-size:16px; color: var(--neon);">15€</span> <span style="color: var(--neon);">→</span></span>
@@ -571,16 +566,16 @@ en quelques clics." style="font-size: clamp(28px, 4vw, 52px); line-height:1.05; 
       </div>
       <!-- barre du bas -->
       <div style="display:flex; flex-direction:column; align-items:center; gap:14px; padding-top:24px; text-align:center;">
-        <img src="assets/tibz-wordmark.png" alt="Tibz Design" style="height:20px; filter: invert(1); opacity:0.85;">
+        <a data-site-link="" href="https://www.tibzdesign.fr" target="_blank" rel="noopener noreferrer" title="Tibz Design" style="display:inline-flex; text-decoration:none;"><img src="assets/tibz-wordmark.png" alt="Tibz Design" style="height:20px; filter: invert(1); opacity:0.85; transition: opacity var(--dur-fast) var(--ease), filter var(--dur-fast) var(--ease);" style-hover="opacity:1; filter: invert(1) drop-shadow(0 0 6px rgba(92,214,255,0.55));"></a>
         <div style="display:flex; align-items:center; justify-content:center; gap:18px; flex-wrap:wrap;">
-          <a href="#" onClick="{{ openMentions }}" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color: var(--txt-mute); text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">Mentions légales</a>
+          <a href="#" onClick="{{ openMentions }}" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color:#f3fbff; text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">Mentions légales</a>
           <span style="color: var(--txt-faint); font-size:10px;">·</span>
-          <a href="#" onClick="{{ openCgv }}" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color: var(--txt-mute); text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">CGV</a>
+          <a href="#" onClick="{{ openCgv }}" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color:#f3fbff; text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">CGV</a>
           <span style="color: var(--txt-faint); font-size:10px;">·</span>
-          <a href="#" onClick="{{ openPrivacy }}" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color: var(--txt-mute); text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">Confidentialité</a>
+          <a href="#" onClick="{{ openPrivacy }}" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color:#f3fbff; text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">Confidentialité</a>
         </div>
         <a href="#" onClick="{{ onContact }}" style="display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing: var(--track-tight); color: var(--neon-soft); text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;"><i class="fa-solid fa-envelope" style="font-size:11px; color: var(--neon);"></i>Nous contacter</a>
-        <span style="font-size:11px; letter-spacing: var(--track-wide); text-transform:uppercase; color: var(--txt-faint);">© Tibz Design · Typix v1.03</span>
+        <span style="font-size:11px; letter-spacing: var(--track-wide); text-transform:uppercase; color:#f3fbff;">© Tibz Design · Typix v1.03</span>
       </div>
     </div>
   </footer>
@@ -930,6 +925,7 @@ class Component extends DCLogic {
     // --- Précharge toutes les vidéos puis révèle la page (loader ASCII) ---
     this._runPreload();
     this._loadConfig();
+    this._initPixelBlast();
 
     // bind des sources vidéo (une fois préchargées : tout d'un coup, synchronisé)
     this._bindVideos = () => {
@@ -1159,7 +1155,7 @@ class Component extends DCLogic {
     this._revTimer = setInterval(reverseTick, 1000 / 30);
   }
 
-  componentWillUnmount() { clearInterval(this._timer); clearInterval(this._vTimer); clearInterval(this._revTimer); if (this._syncTimer) clearInterval(this._syncTimer); if (this._revealBoot) clearInterval(this._revealBoot); if (this._videoBoot) clearInterval(this._videoBoot); if (this._loaderTick) clearInterval(this._loaderTick); if (this._preloadGuard) clearTimeout(this._preloadGuard); if (this._winClick) document.removeEventListener('click', this._winClick); if (this._onRevealScroll) { window.removeEventListener('scroll', this._onRevealScroll); window.removeEventListener('resize', this._onRevealScroll); } if (this._revealCheck) window.removeEventListener('load', this._revealCheck); }
+  componentWillUnmount() { clearInterval(this._timer); clearInterval(this._vTimer); clearInterval(this._revTimer); if (this._syncTimer) clearInterval(this._syncTimer); if (this._revealBoot) clearInterval(this._revealBoot); if (this._videoBoot) clearInterval(this._videoBoot); if (this._loaderTick) clearInterval(this._loaderTick); if (this._preloadGuard) clearTimeout(this._preloadGuard); if (this._winClick) document.removeEventListener('click', this._winClick); if (this._onRevealScroll) { window.removeEventListener('scroll', this._onRevealScroll); window.removeEventListener('resize', this._onRevealScroll); } if (this._revealCheck) window.removeEventListener('load', this._revealCheck); if (this._pbRaf) cancelAnimationFrame(this._pbRaf); if (this._pbResize) window.removeEventListener('resize', this._pbResize); if (this._pbMove) window.removeEventListener('pointermove', this._pbMove); }
 
   _loadConfig() {
     fetch('config.json', { cache: 'no-store' })
@@ -1189,6 +1185,9 @@ class Component extends DCLogic {
         if (ext && newTab) { a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener noreferrer'); }
         else { a.setAttribute('target', '_self'); a.removeAttribute('rel'); }
       });
+    }
+    if (cfg.lienSiteWeb) {
+      document.querySelectorAll('a[data-site-link]').forEach(function (a) { a.setAttribute('href', cfg.lienSiteWeb); });
     }
     var fixed = document.querySelector('[data-anim="buybtn"]');
     if (fixed && (cfg.boutonFixeActif === false || cfg.boutonFixeActif === 'false')) fixed.style.setProperty('display', 'none', 'important');
@@ -1261,6 +1260,62 @@ class Component extends DCLogic {
     for (var j = 0; j < spans.length; j++) spans[j].innerHTML = content;
     var spd = Number(cfg.vitesseBandeau);
     if (isFinite(spd) && spd > 0) track.style.animationDuration = spd + 's';
+  }
+
+  _initPixelBlast() {
+    var canvas = document.getElementById('pixelblast');
+    if (!canvas || this._pbRaf) return;
+    var gl = canvas.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'low-power' });
+    if (!gl) return;
+    var vsSrc = 'attribute vec2 p; void main(){ gl_Position=vec4(p,0.0,1.0); }';
+    var fsSrc = "precision highp float; uniform vec2 uRes; uniform float uTime; uniform vec2 uPointer; uniform float uPixel; uniform vec3 uColor; uniform float uPageFade; uniform float uVh; float hash(vec2 p){ p=fract(p*vec2(123.34,456.21)); p+=dot(p,p+45.32); return fract(p.x*p.y); } float vnoise(vec2 p){ vec2 i=floor(p),f=fract(p); float a=hash(i),b=hash(i+vec2(1.,0.)),c=hash(i+vec2(0.,1.)),d=hash(i+vec2(1.,1.)); vec2 u=f*f*(3.-2.*f); return mix(mix(a,b,u.x),mix(c,d,u.x),u.y); } float fbm(vec2 p){ float v=0.,a=.5; for(int i=0;i<4;i++){ v+=a*vnoise(p); p*=2.02; a*=.5; } return v; } float B2(vec2 a){ a=floor(a); return fract(a.x/2.0+a.y*a.y*0.75); } float B4(vec2 a){ return B2(0.5*a)*0.25+B2(a); } float B8(vec2 a){ return B4(0.5*a)*0.25+B2(a); } void main(){ vec2 frag=gl_FragCoord.xy; vec2 cell=floor(frag/uPixel); vec2 center=(cell+.5)*uPixel; float cp=8.0*uPixel; vec2 cuv=floor(frag/cp)*cp/uVh; float t=uTime*0.02; float base=fbm(cuv*5.25+vec2(t,t*0.5)); float g=clamp(1.0-(center.y/uVh),0.0,1.0); float feed=base*0.5-0.4+g*1.1+(hash(cell)-0.5)*0.06; float bay=B8(frag/uPixel)-0.5; float lit=step(0.5,feed+bay); float br=0.03+0.08*g; float sp=fbm(cuv*2.2+vec2(-t*0.8,t*0.6)+vec2(17.3,9.1)); float feedS=(sp-0.60)*3.0; float litS=step(0.5,feedS+bay); float intensity=max(lit*br,litS*0.045); float dTop=uRes.y-center.y; intensity*=smoothstep(uVh*1.05,uVh*1.7,dTop); intensity*=uPageFade; vec3 base2=vec3(0.004,0.008,0.016); gl_FragColor=vec4(base2+uColor*intensity,1.0); }";
+    function sh(type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+    var prog = gl.createProgram();
+    gl.attachShader(prog, sh(gl.VERTEX_SHADER, vsSrc));
+    gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, fsSrc));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    gl.useProgram(prog);
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var uRes = gl.getUniformLocation(prog, 'uRes'), uTime = gl.getUniformLocation(prog, 'uTime'),
+        uPointer = gl.getUniformLocation(prog, 'uPointer'), uPixel = gl.getUniformLocation(prog, 'uPixel'),
+        uColor = gl.getUniformLocation(prog, 'uColor'), uPageFade = gl.getUniformLocation(prog, 'uPageFade'),
+        uVh = gl.getUniformLocation(prog, 'uVh');
+    gl.uniform3f(uColor, 0.361, 0.839, 1.0);
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var pointer = { x: -1e5, y: -1e5 };
+    function resize() {
+      var pageH = Math.max(innerHeight, canvas.parentElement ? canvas.parentElement.scrollHeight : innerHeight);
+      var scale = Math.min(dpr, 8192 / pageH, 8192 / innerWidth);
+      var w = Math.floor(innerWidth * scale), h = Math.floor(pageH * scale);
+      if (w === canvas.width && h === canvas.height) return;
+      canvas.width = w; canvas.height = h;
+      gl.viewport(0, 0, w, h);
+      gl.uniform2f(uRes, w, h);
+      gl.uniform1f(uVh, innerHeight * scale);
+      gl.uniform1f(uPixel, Math.max(4.0, Math.round(5 * scale)));
+    }
+    resize();
+    this._pbResize = resize;
+    window.addEventListener('resize', resize);
+    if (window.ResizeObserver && canvas.parentElement) { this._pbRO = new ResizeObserver(resize); this._pbRO.observe(canvas.parentElement); }
+    this._pbMove = function (e) { var t = e.touches ? e.touches[0] : e; pointer.x = t.clientX * dpr; pointer.y = (innerHeight - t.clientY) * dpr; };
+    window.addEventListener('pointermove', this._pbMove, { passive: true });
+    var start = performance.now(), self = this;
+    var loop = function () {
+      var t = (performance.now() - start) / 1000;
+      gl.uniform1f(uTime, t);
+      gl.uniform2f(uPointer, pointer.x, pointer.y);
+      gl.uniform1f(uPageFade, 1.0);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      self._pbRaf = requestAnimationFrame(loop);
+    };
+    loop();
   }
 
   renderVals() {

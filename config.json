@@ -10,7 +10,7 @@
   "ouvrirNouvelOnglet": true,
 
   "note_paiement":    "═══ PAIEMENT ═══  ·  plateformePaiement = nom du prestataire affiché dans les CGV, mentions légales, FAQ et checkout (ex: Gumroad, Lemon Squeezy). Remplace le nom partout automatiquement.",
-  "plateformePaiement": "Lemon Squeezy",
+  "plateformePaiement": "Gumroad",
 
   "note_bandeau":     "═══ BANNIÈRE DU HAUT ═══  ·  bandeauActif = afficher la bande bleue · texteBandeau = son texte · vitesseBandeau = secondes par tour (plus grand = plus lent)",
   "bandeauActif": false,
@@ -21,7 +21,10 @@
   "boutonFixeActif": true,
 
   "note_langue":      "═══ LANGUE ═══  ·  langueParDefaut = fr ou en (utilisée seulement si le visiteur n'a pas encore choisi)",
-  "langueParDefaut": "en",
+  "langueParDefaut": "fr",
+
+  "note_siteweb":     "═══ LOGO FOOTER ═══  ·  lienSiteWeb = URL ouverte quand on clique sur le logo Tibz du footer (nouvel onglet)",
+  "lienSiteWeb": "https://tibzdesign.fr",
 
   "note_contact":     "═══ CONTACT ═══  ·  emailContact = adresse du lien « Nous contacter » + celle affichée dans les mentions légales / RGPD",
   "emailContact": "contact@tibzdesign.fr",
