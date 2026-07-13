@@ -1,0 +1,23 @@
+{
+  "name": "primary",
+  "version": "1.0.0",
+  "description": "Page de vente du plugin **Typix** (effet After Effects), prête à héberger sur **GitHub Pages**.",
+  "main": "support.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tibocreteur/Typix.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tibocreteur/Typix/issues"
+  },
+  "homepage": "https://github.com/tibocreteur/Typix#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
