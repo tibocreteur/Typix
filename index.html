@@ -281,7 +281,7 @@
 
   <!-- ====== HERO — DOS boot window ====== -->
   <section style="position:relative; min-height: calc(100dvh - 32px); display:flex; align-items:center; overflow:hidden; background:#010204;">
-    <video data-anim="herovid" src="https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/fond.mp4" autoplay="" loop="" muted="" playsinline="" style="opacity:0; position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></video>
+    <video data-anim="herovid" src="assets/fond.mp4" autoplay="" loop="" muted="" playsinline="" style="opacity:0; position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></video>
     <div style="position:absolute; inset:0; background: linear-gradient(110deg, rgba(1,2,4,0.92) 0%, rgba(1,2,4,0.68) 46%, rgba(1,2,4,0.3) 100%);"></div>
     <div style="position:absolute; left:0; right:0; bottom:0; height:38%; background: linear-gradient(to bottom, rgba(1,2,4,0) 0%, rgba(1,2,4,0.85) 78%, #010204 100%);"></div>
 
@@ -407,7 +407,7 @@
           <div>
             <div data-reveal="up" data-reveal-text="" data-reveal-delay="80" style="font-size:11px; font-weight:700; letter-spacing: var(--track-tight); color: var(--neon); margin-bottom:8px;">.01 &gt; COMPOSE TA BANDE</div>
             <div style="border:1px solid var(--bd); background:#03050a; padding:10px;">
-              <video src="https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/custom-trame.mp4" autoplay="" loop="" muted="" playsinline="" style="display:block; width:100%; height:auto; mix-blend-mode: screen;"></video>
+              <video src="assets/custom-trame.mp4" autoplay="" loop="" muted="" playsinline="" style="display:block; width:100%; height:auto; mix-blend-mode: screen;"></video>
             </div>
             <div style="display:flex; align-items:center; gap:8px; margin-top:7px; font-size:10px; color: var(--txt-faint); letter-spacing: var(--track-tight); text-transform:uppercase;"><span style="color: var(--neon);">└</span> du plus sombre au plus clair</div>
           </div>
@@ -420,7 +420,7 @@
         <div>
           <div data-reveal="up" data-reveal-text="" data-reveal-delay="80" style="font-size:11px; font-weight:700; letter-spacing: var(--track-tight); color: var(--neon); margin-bottom:8px;">.02 &gt; LE RENDU</div>
           <div style="position:relative; background:#03050a; border:1px solid var(--bd); overflow:hidden;">
-            <video src="https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/custom-rendu.mp4" autoplay="" loop="" muted="" playsinline="" style="display:block; width:100%; height:auto; mix-blend-mode: screen;"></video>
+            <video src="assets/custom-rendu.mp4" autoplay="" loop="" muted="" playsinline="" style="display:block; width:100%; height:auto; mix-blend-mode: screen;"></video>
             <span style="position:absolute; top:10px; right:12px; display:inline-flex; align-items:center; gap:6px; font-size:10px; font-weight:700; letter-spacing: var(--track-wide); color: var(--neon-soft); background: rgba(1,2,4,0.55); padding:4px 8px;"><span style="width:6px;height:6px;border-radius:50%; background: var(--neon); animation: typixPulse 1.5s infinite;"></span>RENDER</span>
           </div>
         </div>
@@ -1359,15 +1359,15 @@ class Component extends DCLogic {
       buyTarget: buyExternal ? '_blank' : '',
       buyRel: buyExternal ? 'noopener noreferrer' : '',
       demos: [
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo1.mp4', num: '01', caption: 'Halftone', delay: 0 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo2.mp4', num: '02', caption: 'Strokes', delay: 70 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo3.mp4', num: '03', caption: 'Bars', delay: 140 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo4.mp4', num: '04', caption: 'Katakana', delay: 0 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo5.mp4', num: '05', caption: 'ASCII', delay: 70 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo6.mp4', num: '06', caption: 'Dither', delay: 140 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo7.mp4', num: '07', caption: 'Crosses', delay: 0 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo8.mp4', num: '08', caption: 'Circuit', delay: 70 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo9.mp4', num: '09', caption: 'Shapes', delay: 140 },
+        { src: 'assets/demo1.mp4', num: '01', caption: 'Halftone', delay: 0 },
+        { src: 'assets/demo2.mp4', num: '02', caption: 'Strokes', delay: 70 },
+        { src: 'assets/demo3.mp4', num: '03', caption: 'Bars', delay: 140 },
+        { src: 'assets/demo4.mp4', num: '04', caption: 'Katakana', delay: 0 },
+        { src: 'assets/demo5.mp4', num: '05', caption: 'ASCII', delay: 70 },
+        { src: 'assets/demo6.mp4', num: '06', caption: 'Dither', delay: 140 },
+        { src: 'assets/demo7.mp4', num: '07', caption: 'Crosses', delay: 0 },
+        { src: 'assets/demo8.mp4', num: '08', caption: 'Circuit', delay: 70 },
+        { src: 'assets/demo9.mp4', num: '09', caption: 'Shapes', delay: 140 },
       ],
       // Les 9 styles restants (9 en démo + 9 ici = les 18 du plugin). Noms = ceux du panneau AE.
       moreStyles: ['Dots', 'Circles', 'Braille', 'Blocks', 'Grid', 'Stripes', 'Letters', 'Binary', 'Custom'],
