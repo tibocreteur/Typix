@@ -4,26 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Typix</title>
-<meta name="description" content="Transforme tes vidéos dans After Effects : 18 styles prêts à poser et un mode 100% custom, animé image par image. Installateur, licence et guide inclus. Offre de lancement 15€ au lieu de 20€.">
+<meta name="description" content="Transforme tes vidéos dans After Effects : 18 styles prêts à poser et un mode 100% custom, animé image par image. 2 effets, installateur, notice et licence inclus. Offre de lancement 10€ au lieu de 15€.">
 <link rel="icon" type="image/png" href="assets/favicon.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=2">
 <meta name="msapplication-TileImage" content="assets/speeddial.png?v=2">
 <meta name="msapplication-TileColor" content="#010204">
 <meta name="theme-color" content="#010204">
-<link rel="canonical" href="https://tibocreteur.github.io/Typix/">
+<link rel="canonical" href="https://www.typix.eu/">
 <meta property="og:type" content="product">
 <meta property="og:site_name" content="Typix">
-<meta property="og:url" content="https://tibocreteur.github.io/Typix/">
+<meta property="og:url" content="https://www.typix.eu/">
 <meta property="og:title" content="Typix · Moteur d'effet pour After Effects">
-<meta property="og:description" content="18 styles prêts à poser + un mode 100% custom, animé image par image. Installateur et guide inclus. Offre de lancement 15€ au lieu de 20€.">
-<meta property="og:image" content="https://tibocreteur.github.io/Typix/assets/og-typix.png?v=2">
+<meta property="og:description" content="18 styles prêts à poser + un mode 100% custom, animé image par image. 2 effets, installateur et notice inclus. Offre de lancement 10€ au lieu de 15€.">
+<meta property="og:image" content="https://www.typix.eu/assets/og-typix.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Typix pour After Effects">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Typix · Moteur d'effet pour After Effects">
-<meta name="twitter:description" content="18 styles prêts à poser + un mode 100% custom, animé image par image. Offre de lancement 15€.">
-<meta name="twitter:image" content="https://tibocreteur.github.io/Typix/assets/og-typix.png?v=2">
+<meta name="twitter:description" content="18 styles prêts à poser + un mode 100% custom, animé image par image. Offre de lancement 10€.">
+<meta name="twitter:image" content="https://www.typix.eu/assets/og-typix.png?v=2">
 <script src="./support.js"></script>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -112,7 +112,7 @@
     [data-m="herowin-pad"] { padding: 22px 18px !important; }
     [data-m="herologos"] img:first-of-type { width: min(54vw, 200px) !important; }
     [data-m="herologos"] span, [data-m="herologos"] img:last-of-type { display: none !important; }
-    /* prix : seul le 15€ est agrandi (pas le 20€ barré) */
+    /* prix : seul le prix promo est agrandi (pas le prix plein barré) */
     [data-m="price"] { flex-wrap: wrap !important; gap: 12px 14px !important; }
     [data-m="price"] > span:first-child { font-size: 52px !important; }
     /* header : logo seul, compact */
@@ -253,14 +253,14 @@
   <!-- ====== Bouton fixe ====== -->
   <a data-anim="buybtn" href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="opacity:0; position: fixed; right: 26px; bottom: 26px; z-index: 9500; display:inline-flex; align-items:stretch; white-space:nowrap; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#06080c; background:#fff; text-decoration:none; border:1px solid var(--neon); box-shadow:0 12px 34px rgba(0,0,0,0.55), 0 0 22px rgba(92,214,255,0.3); overflow:hidden; transition: filter var(--dur-fast) var(--ease);" style-hover="filter: brightness(1.03) drop-shadow(0 0 7px rgba(92,214,255,0.32));">
     <span style="display:inline-flex; align-items:center; gap:10px; padding:16px 22px;"><i class="fa-solid fa-download" style="font-size:12px;"></i>Obtenir</span>
-    <span style="display:inline-flex; align-items:center; gap:8px; padding:16px 20px; background:#06080c; color:#fff;"><span data-price="full" style="text-decoration:line-through; opacity:.45; font-size:12px;">20€</span><span data-price="now" style="font-size:16px; color: var(--neon);">15€</span> <span style="color: var(--neon);">→</span></span>
+    <span style="display:inline-flex; align-items:center; gap:8px; padding:16px 20px; background:#06080c; color:#fff;"><span data-price="full" style="text-decoration:line-through; opacity:.45; font-size:12px;">15€</span><span data-price="now" style="font-size:16px; color: var(--neon);">10€</span> <span style="color: var(--neon);">→</span></span>
   </a>
 
   <!-- ====== BIOS bar (ticker infini) ====== -->
   <div data-anim="banner" style="opacity:0; position:fixed; top:0; left:0; right:0; z-index:9100; overflow:hidden; background: var(--neon); color: var(--neon-ink); font-size:11px; font-weight:700; letter-spacing: var(--track-tight); text-transform:uppercase; box-sizing:border-box;">
     <div style="display:flex; width:max-content; white-space:nowrap; will-change:transform; animation: typixFlash 60s linear infinite;">
-      <span style="display:flex; align-items:center; padding:7px 0;">&gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; </span>
-      <span style="display:flex; align-items:center; padding:7px 0;" aria-hidden="true">&gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">20€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">15€</span> &nbsp;·&nbsp;&nbsp; </span>
+      <span style="display:flex; align-items:center; padding:7px 0;">&gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; </span>
+      <span style="display:flex; align-items:center; padding:7px 0;" aria-hidden="true">&gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; &gt;&gt; OFFRE DE LANCEMENT&nbsp;:&nbsp; <span style="text-decoration:line-through; opacity:.55;">15€</span>&nbsp; <span style="background: var(--neon-ink); color: var(--neon); padding:1px 6px;">10€</span> &nbsp;·&nbsp;&nbsp; </span>
     </div>
   </div>
 
@@ -308,7 +308,7 @@
           <div style="display:flex; align-items:center; gap:18px; margin-top:26px; flex-wrap:wrap;">
             <a data-buy="" href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:inline-flex; align-items:stretch; white-space:nowrap; font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#06080c; background:#fff; text-decoration:none; box-shadow:0 0 0 rgba(92,214,255,0); transition: filter var(--dur-fast) var(--ease);" style-hover="filter: brightness(1.03) drop-shadow(0 0 7px rgba(92,214,255,0.32));">
               <span style="display:inline-flex; align-items:center; gap:9px; padding:15px 22px;"><i class="fa-solid fa-download" style="font-size:12px;"></i>Obtenir</span>
-              <span style="display:inline-flex; align-items:center; gap:7px; padding:15px 18px; background:#06080c; color:#fff;"><span data-price="full" style="text-decoration:line-through; opacity:.5; font-size:12px;">20€</span><span data-price="now">15€</span> <span style="color: var(--neon);">→</span></span>
+              <span style="display:inline-flex; align-items:center; gap:7px; padding:15px 18px; background:#06080c; color:#fff;"><span data-price="full" style="text-decoration:line-through; opacity:.5; font-size:12px;">15€</span><span data-price="now">10€</span> <span style="color: var(--neon);">→</span></span>
             </a>
             <span style="font-size:12px; letter-spacing: var(--track-wide); text-transform:uppercase; color: var(--txt-mute);">.AEX · installateur inclus</span>
           </div>
@@ -364,7 +364,7 @@
           <sc-for list="{{ moreStyles }}" as="m" hint-placeholder-count="12">
             <span style="font-size:11px; font-weight:700; letter-spacing: var(--track-tight); text-transform:uppercase; color: var(--txt-mute); border:1px solid var(--bd-soft); padding:5px 10px;">{{ m }}</span>
           </sc-for>
-          <span style="font-size:11px; font-weight:700; letter-spacing: var(--track-tight); text-transform:uppercase; color: var(--neon-ink); background: var(--neon); padding:5px 10px;">+ encore</span>
+          <span style="font-size:11px; font-weight:700; letter-spacing: var(--track-tight); text-transform:uppercase; color: var(--neon-ink); background: var(--neon); padding:5px 10px;">= 18 au total</span>
         </div>
       </div>
     </div>
@@ -455,7 +455,7 @@
       <!-- Fenêtre A : contenu -->
       <div data-window="" data-reveal="up" style="border:1px solid var(--bd); background: var(--panel);">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 12px; background: var(--neon); color: var(--neon-ink);">
-          <span style="font-size:12px; font-weight:700; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">▓ TYPIX.ZIP · 4 ITEMS</span>
+          <span style="font-size:12px; font-weight:700; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">▓ TYPIX.ZIP · 6 ITEMS</span>
           <span style="display:flex; align-items:center; gap:1px; flex:none;"><span data-wact="min" title="Réduire" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease);" style-hover="background:rgba(3,20,29,0.16);"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><line x1="2" y1="8" x2="9" y2="8" stroke="currentColor" stroke-width="1.4"></line></svg></span><span data-wact="max" title="Agrandir" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease);" style-hover="background:rgba(3,20,29,0.16);"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="2.2" y="2.2" width="6.6" height="6.6" stroke="currentColor" stroke-width="1.4"></rect></svg></span><span data-wact="close" title="Fermer" style="width:26px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:rgba(3,20,29,0.72); cursor:default; transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);" style-hover="background:#e84343; color:#fff;"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><line x1="2.6" y1="2.6" x2="8.4" y2="8.4" stroke="currentColor" stroke-width="1.4"></line><line x1="8.4" y1="2.6" x2="2.6" y2="8.4" stroke="currentColor" stroke-width="1.4"></line></svg></span></span>
         </div>
         <div style="padding:24px 28px 26px; display:flex; flex-direction:column; gap:20px;">
@@ -478,7 +478,7 @@
             <div style="display:flex; flex-wrap:wrap; gap:8px;">
               <span style="display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:700; letter-spacing: var(--track-tight); text-transform:uppercase; color: var(--txt-mute); border:1px solid var(--bd-soft); padding:6px 10px;"><i class="fa-brands fa-windows" style="color: var(--neon); font-size:11px;"></i>Windows</span>
               <span style="display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:700; letter-spacing: var(--track-tight); text-transform:uppercase; color: var(--txt-mute); border:1px solid var(--bd-soft); padding:6px 10px;"><i class="fa-brands fa-apple" style="color: var(--neon); font-size:12px;"></i>macOS</span>
-              <span style="display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:700; letter-spacing: var(--track-tight); text-transform:uppercase; color: var(--txt-mute); border:1px solid var(--bd-soft); padding:6px 10px;">After Effects 2021+</span>
+              <span style="display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:700; letter-spacing: var(--track-tight); text-transform:uppercase; color: var(--txt-mute); border:1px solid var(--bd-soft); padding:6px 10px;">After Effects 2022+</span>
             </div>
           </div>
         </div>
@@ -494,10 +494,10 @@
           <div>
             <div style="font-size:11px; color: var(--txt-faint); letter-spacing: var(--track-wide); text-transform:uppercase; margin-bottom:12px;">// coût total</div>
             <div style="display:flex; align-items:center; gap:14px;" data-m="price">
-              <span data-price="now" style="font-size:60px; font-weight:700; line-height:1; letter-spacing:-0.045em; color:#ffffff;">15€</span>
+              <span data-price="now" style="font-size:60px; font-weight:700; line-height:1; letter-spacing:-0.045em; color:#ffffff;">10€</span>
               <div style="display:flex; flex-direction:column; align-items:flex-start; gap:6px;">
-                <span data-price="full" style="font-size:16px; font-weight:700; text-decoration:line-through; color: var(--txt-faint); line-height:1;">20€</span>
-                <span data-price="discount" style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color: var(--neon-ink); background: var(--neon); padding:3px 8px; line-height:1.3;">−25%</span>
+                <span data-price="full" style="font-size:16px; font-weight:700; text-decoration:line-through; color: var(--txt-faint); line-height:1;">15€</span>
+                <span data-price="discount" style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color: var(--neon-ink); background: var(--neon); padding:3px 8px; line-height:1.3;">−33%</span>
               </div>
             </div>
             <div style="font-size:11px; font-weight:700; letter-spacing: var(--track-wide); text-transform:uppercase; color: var(--txt-mute); margin-top:10px;">Paiement unique · Accès à vie · MàJ incluses</div>
@@ -565,7 +565,7 @@ en quelques clics." style="font-size: clamp(28px, 4vw, 52px); line-height:1.05; 
         <p style="font-size:14px; line-height: var(--leading-body); color: #f3fbff; margin:0 auto 30px; max-width:46ch;">18 styles, contrôles 100% custom, installateur inclus. Accès immédiat après l'achat.</p>
         <a data-buy="" href="{{ buyUrl }}" target="{{ buyTarget }}" rel="{{ buyRel }}" style="display:inline-flex; align-items:stretch; white-space:nowrap; font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#06080c; background:#fff; text-decoration:none; border:1px solid var(--neon); transition: filter var(--dur-fast) var(--ease);" style-hover="filter: brightness(1.03) drop-shadow(0 0 7px rgba(92,214,255,0.32));">
           <span style="display:inline-flex; align-items:center; gap:10px; padding:16px 24px;"><i class="fa-solid fa-download" style="font-size:12px;"></i>Obtenir Typix</span>
-          <span data-m="btnprice" style="display:inline-flex; align-items:center; gap:8px; padding:16px 22px; background:#06080c; color:#fff;"><span data-price="full" style="text-decoration:line-through; opacity:.45; font-size:12px;">20€</span><span data-price="now" style="font-size:16px; color: var(--neon);">15€</span> <span style="color: var(--neon);">→</span></span>
+          <span data-m="btnprice" style="display:inline-flex; align-items:center; gap:8px; padding:16px 22px; background:#06080c; color:#fff;"><span data-price="full" style="text-decoration:line-through; opacity:.45; font-size:12px;">15€</span><span data-price="now" style="font-size:16px; color: var(--neon);">10€</span> <span style="color: var(--neon);">→</span></span>
         </a>
       </div>
       <!-- barre du bas -->
@@ -579,7 +579,7 @@ en quelques clics." style="font-size: clamp(28px, 4vw, 52px); line-height:1.05; 
           <a href="#" onClick="{{ openPrivacy }}" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color:#f3fbff; text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">Confidentialité</a>
         </div>
         <a href="#" onClick="{{ onContact }}" style="display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing: var(--track-tight); color: var(--neon-soft); text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;"><i class="fa-solid fa-envelope" style="font-size:11px; color: var(--neon);"></i>Nous contacter</a>
-        <span style="font-size:11px; letter-spacing: var(--track-wide); text-transform:uppercase; color:#f3fbff;">© Tibz Design · Typix v1.03</span>
+        <span style="font-size:11px; letter-spacing: var(--track-wide); text-transform:uppercase; color:#f3fbff;">© Tibz Design · Typix v1.0</span>
       </div>
     </div>
   </footer>
@@ -597,14 +597,14 @@ en quelques clics." style="font-size: clamp(28px, 4vw, 52px); line-height:1.05; 
             <div style="font-size:13px; line-height:1.85; color: var(--txt-mute);">
               <p style="margin:0 0 14px;"><span style="color: var(--neon);">&gt;</span> <strong style="color:#f3fbff;">Éditeur du site</strong><br>Tibo Créteur (Tibz Design) — <span style="color: var(--txt-faint);">79 rue du Cornet, Raimbeaucourt</span><br>SIRET : <span style="color: var(--txt-faint);">93160601600018</span><br>Contact : <span style="color: var(--neon-soft);">{{ contactEmail }}</span></p>
               <p style="margin:0 0 14px;"><span style="color: var(--neon);">&gt;</span> <strong style="color:#f3fbff;">Directeur de la publication</strong><br>Tibo Créteur</p>
-              <p style="margin:0 0 14px;"><span style="color: var(--neon);">&gt;</span> <strong style="color:#f3fbff;">Hébergement</strong><br><span style="color: var(--txt-faint);">GitHub Pages — GitHub, Inc.<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA<br>github.com</span></p>
+              <p style="margin:0 0 14px;"><span style="color: var(--neon);">&gt;</span> <strong style="color:#f3fbff;">Hébergement</strong><br><span style="color: var(--txt-faint);">Vercel Inc.<br>440 N Barranca Avenue #4133, Covina, CA 91723, USA<br>vercel.com</span></p>
               <p style="margin:0;"><span style="color: var(--neon);">&gt;</span> <strong style="color:#f3fbff;">Paiement</strong><br>Les paiements sont traités par Lemon Squeezy (Merchant of Record), qui émet la facture et collecte la TVA applicable.</p>
             </div>
           </sc-if>
           <sc-if value="{{ isCgv }}" hint-placeholder-val="{{ false }}">
             <div style="font-size:13px; line-height:1.85; color: var(--txt-mute);">
-              <p style="margin:0 0 14px;"><span style="color: var(--neon);">&gt;</span> <strong style="color:#f3fbff;">Produit</strong><br>Typix est un effet logiciel pour Adobe After Effects, livré sous forme de fichier numérique téléchargeable (.AEX + installateur, désinstallateur, licence, guide).</p>
-              <p style="margin:0 0 14px;"><span style="color: var(--neon);">&gt;</span> <strong style="color:#f3fbff;">Prix</strong><br><span data-price="now">15€</span> TTC<span data-price="promoclause"> (offre de lancement, au lieu de <span data-price="full">20€</span>)</span>. Paiement unique, accès à vie, mises à jour gratuites.</p>
+              <p style="margin:0 0 14px;"><span style="color: var(--neon);">&gt;</span> <strong style="color:#f3fbff;">Produit</strong><br>Typix est un effet logiciel pour Adobe After Effects, livré sous forme de fichier numérique téléchargeable : les effets Typix et Typix Grid (.AEX), l'installateur, le désinstallateur, la notice et la licence.</p>
+              <p style="margin:0 0 14px;"><span style="color: var(--neon);">&gt;</span> <strong style="color:#f3fbff;">Prix</strong><br><span data-price="now">10€</span> TTC<span data-price="promoclause"> (offre de lancement, au lieu de <span data-price="full">15€</span>)</span>. Paiement unique, accès à vie, mises à jour gratuites.</p>
               <p style="margin:0 0 14px;"><span style="color: var(--neon);">&gt;</span> <strong style="color:#f3fbff;">Commande &amp; livraison</strong><br>Le paiement s'effectue via Lemon Squeezy. Le lien de téléchargement est fourni immédiatement après l'achat, par email.</p>
               <p style="margin:0 0 14px;"><span style="color: var(--neon);">&gt;</span> <strong style="color:#f3fbff;">Droit de rétractation</strong><br>Conformément à l'art. L221-28 du Code de la consommation, l'acheteur reconnaît que la livraison du contenu numérique commence immédiatement après l'achat et renonce expressément à son droit de rétractation.</p>
               <p style="margin:0;"><span style="color: var(--neon);">&gt;</span> <strong style="color:#f3fbff;">Licence</strong><br>Usage personnel et commercial autorisé. Revente, partage ou redistribution du fichier interdits.</p>
@@ -825,8 +825,7 @@ class Component extends DCLogic {
       '> Teinte': '> Hue',
       'Style inclus': 'Included',
       "+ 9 AUTRES STYLES INCLUS DANS L'EFFET": '+ 9 MORE STYLES INCLUDED IN THE EFFECT',
-      '+ encore': '+ more',
-      'Blocs': 'Blocks', 'Points': 'Dots', 'Binaire': 'Binary', 'Néon': 'Neon', 'Rétro': 'Retro',
+      '= 18 au total': '= 18 in total',
       '▓ SPECS.SYS · CONTRÔLE TOTAL': '▓ SPECS.SYS · FULL CONTROL',
       '▓ CUSTOM.FX · TUILES PERSO': '▓ CUSTOM.FX · CUSTOM TILES',
       '▓ INSTALL.SH · 3 ÉTAPES': '▓ INSTALL.SH · 3 STEPS',
@@ -835,7 +834,7 @@ class Component extends DCLogic {
       'Couleur\nou mono': 'Color\nor mono',
       'Rendu\nrapide': 'Fast\nrender',
       'Des réglages prêts à poser, ou tu ouvres tout : densité, taille, contraste.': 'Ready-to-use settings, or open everything: density, size, contrast.',
-      'Standard, blocs, binaire, ou ton propre jeu de caractères.': 'Standard, blocks, binary, or your own character set.',
+      'Caractères, blocs, binaire, katakana… ou tes propres tuiles dessinées dans une compo.': 'Characters, blocks, binary, katakana… or your own tiles drawn in a comp.',
       "Garde les couleurs de la source, ou passe en monochrome d'un clic.": 'Keep the source colors, or switch to monochrome in one click.',
       'Optimisé pour rester fluide en preview comme à l’export.': 'Optimized to stay smooth in preview and on export.',
       'Crée tes propres tuiles.': 'Create your own tiles.',
@@ -868,6 +867,9 @@ class Component extends DCLogic {
       'Désinstallateur': 'Uninstaller', 'Retrait propre': 'Clean removal',
       'Licence': 'License', 'Perso & commercial': 'Personal & commercial',
       'Presets + custom': 'Presets + custom',
+      'Effet Typix Grid (.AEX)': 'Typix Grid effect (.AEX)', 'Gabarit pour tes tuiles': 'Template for your tiles',
+      'Notice (README)': 'Readme', 'Install + prise en main': 'Install + getting started',
+      '18 styles + custom': '18 styles + custom',
       '// prêt à transformer tes vidéos ?': '// ready to transform your videos?',
       "18 styles, contrôles 100% custom, installateur inclus. Accès immédiat après l'achat.": '18 styles, 100% custom controls, installer included. Instant access after purchase.',
       'Mentions légales': 'Legal notice', 'CGV': 'Terms', 'Confidentialité': 'Privacy',
@@ -877,9 +879,13 @@ class Component extends DCLogic {
       'C’est un plugin ou un preset ?': 'Is it a plugin or a preset?',
       'C’est un effet .AEX installé via l’installateur fourni. Il apparaît comme un effet natif dans Effets › Stylize › TYPIX, et se glisse sur n’importe quel calque.': 'It’s an .AEX effect installed via the included installer. It appears as a native effect in Effects › Stylize › TYPIX, and drops onto any layer.',
       'Mac et Windows ?': 'Mac and Windows?',
-      'Oui, le pack contient l’installateur adapté à ta plateforme.': 'Yes, the pack includes the installer for your platform.',
+      'Oui. Tu télécharges le pack correspondant à ta plateforme : Windows (.aex) ou macOS (.plugin), chacun avec son installateur.': 'Yes. You download the pack for your platform: Windows (.aex) or macOS (.plugin), each with its installer.',
+      'Windows affiche un avertissement à l’installation ?': 'Windows shows a warning on install?',
+      'C’est normal : Windows prévient pour tout fichier téléchargé non signé. Le plus simple : clic droit sur le .zip AVANT de l’extraire → Propriétés → coche « Débloquer » → OK, puis extrais. Sinon, clique sur « Informations complémentaires » → « Exécuter quand même ».': 'That’s expected: Windows warns about any unsigned downloaded file. Easiest fix: right-click the .zip BEFORE extracting → Properties → tick “Unblock” → OK, then extract. Otherwise click “More info” → “Run anyway”.',
+      'L’interface est en français ?': 'Is the interface in French?',
+      'Le panneau de l’effet dans After Effects est en anglais (Style, Size, Color…), comme la plupart des plugins AE. La notice fournie explique chaque réglage.': 'The effect panel in After Effects is in English (Style, Size, Color…), like most AE plugins. The included readme explains every setting.',
       'Comment je reçois le fichier ?': 'How do I receive the file?',
-      'Après le paiement sur Lemon Squeezy, tu reçois immédiatement un lien de téléchargement du zip (effet, installateur, désinstallateur et licence).': 'After payment on Lemon Squeezy, you instantly get a download link for the zip (effect, installer, uninstaller and license).',
+      'Après le paiement sur Lemon Squeezy, tu reçois immédiatement un lien de téléchargement du zip : les deux effets (Typix et Typix Grid), l’installateur, le désinstallateur, la notice et la licence.': 'After payment on Lemon Squeezy, you instantly get a download link for the zip: both effects (Typix and Typix Grid), the installer, the uninstaller, the readme and the license.',
       'Les mises à jour sont incluses ?': 'Are updates included?',
       'Oui. Les futures versions de Typix sont incluses, accessibles depuis le même lien.': 'Yes. Future versions of Typix are included, accessible from the same link.',
       'Je peux l’utiliser pour des clients ?': 'Can I use it for clients?',
@@ -1354,16 +1360,17 @@ class Component extends DCLogic {
       buyRel: buyExternal ? 'noopener noreferrer' : '',
       demos: [
         { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo1.mp4', num: '01', caption: 'Halftone', delay: 0 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo2.mp4', num: '02', caption: 'Code', delay: 70 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo3.mp4', num: '03', caption: 'Scanlines', delay: 140 },
+        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo2.mp4', num: '02', caption: 'Strokes', delay: 70 },
+        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo3.mp4', num: '03', caption: 'Bars', delay: 140 },
         { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo4.mp4', num: '04', caption: 'Katakana', delay: 0 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo5.mp4', num: '05', caption: 'Dense', delay: 70 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo6.mp4', num: '06', caption: 'Pixel', delay: 140 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo7.mp4', num: '07', caption: 'Style 07', delay: 0 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo8.mp4', num: '08', caption: 'Style 08', delay: 70 },
-        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo9.mp4', num: '09', caption: 'Style 09', delay: 140 },
+        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo5.mp4', num: '05', caption: 'ASCII', delay: 70 },
+        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo6.mp4', num: '06', caption: 'Dither', delay: 140 },
+        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo7.mp4', num: '07', caption: 'Crosses', delay: 0 },
+        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo8.mp4', num: '08', caption: 'Circuit', delay: 70 },
+        { src: 'https://cdn.jsdelivr.net/gh/tibocreteur/Typix@main/assets/demo9.mp4', num: '09', caption: 'Shapes', delay: 140 },
       ],
-      moreStyles: ['Braille', 'Blocs', 'Points', 'Binaire', 'Matrix', 'Néon', 'Glitch', 'Rétro', 'Terminal'],
+      // Les 9 styles restants (9 en démo + 9 ici = les 18 du plugin). Noms = ceux du panneau AE.
+      moreStyles: ['Dots', 'Circles', 'Braille', 'Blocks', 'Grid', 'Stripes', 'Letters', 'Binary', 'Custom'],
       tiles: [
         { label: 'STANDARD', swatch: '.:=#', set: '.:-=+*#%@', ramp: ' .:-=+*#%@', mode: 'plasma', seed: 2, mono: '' },
         { label: 'BLOCS', swatch: '░▒▓█', set: '░ ▒ ▓ █', ramp: ' \u2591\u2592\u2593\u2588', mode: 'rings', seed: 6, mono: '' },
@@ -1372,7 +1379,7 @@ class Component extends DCLogic {
       ],
       features: [
         { icon: 'fa-solid fa-sliders', tag: 'CTRL', title: 'Presets\n+ custom', stick: '#5cd6ff', desc: 'Des réglages prêts à poser, ou tu ouvres tout : densité, taille, contraste.' },
-        { icon: 'fa-solid fa-font', tag: 'CHAR', title: 'Charsets\nau choix', stick: '#7defff', desc: 'Standard, blocs, binaire, ou ton propre jeu de caractères.' },
+        { icon: 'fa-solid fa-font', tag: 'CHAR', title: 'Charsets\nau choix', stick: '#7defff', desc: 'Caractères, blocs, binaire, katakana… ou tes propres tuiles dessinées dans une compo.' },
         { icon: 'fa-solid fa-palette', tag: 'COL', title: 'Couleur\nou mono', stick: '#a9e8ff', desc: "Garde les couleurs de la source, ou passe en monochrome d'un clic." },
         { icon: 'fa-solid fa-bolt', tag: 'GPU', title: 'Rendu\nrapide', stick: '#39b8ff', desc: 'Optimisé pour rester fluide en preview comme à l’export.' },
       ],
@@ -1382,9 +1389,11 @@ class Component extends DCLogic {
         { n: '3', big: '03', title: 'Choisis ou règle', desc: 'Pars d\u2019un preset, puis ajuste densité, charset et couleur à ta sauce.' },
       ],
       included: [
-        { icon: 'fa-solid fa-wand-magic-sparkles', label: 'Effet Typix (.AEX)', sub: 'Presets + custom' },
+        { icon: 'fa-solid fa-wand-magic-sparkles', label: 'Effet Typix (.AEX)', sub: '18 styles + custom' },
+        { icon: 'fa-solid fa-table-cells', label: 'Effet Typix Grid (.AEX)', sub: 'Gabarit pour tes tuiles' },
         { icon: 'fa-solid fa-download', label: 'Installateur', sub: 'Install 1-clic' },
         { icon: 'fa-solid fa-trash-can', label: 'Désinstallateur', sub: 'Retrait propre' },
+        { icon: 'fa-solid fa-file-lines', label: 'Notice (README)', sub: 'Install + prise en main' },
         { icon: 'fa-solid fa-file-contract', label: 'Licence', sub: 'Perso & commercial' },
       ],
       allowed: [
@@ -1401,8 +1410,10 @@ class Component extends DCLogic {
       faqs: [
         { q: 'Quelle version d\u2019After Effects ?', a: 'Typix s\u2019installe sur After Effects (testé jusqu\u2019à la version 2026). Après l\u2019installation, ferme et rouvre AE : l\u2019effet apparaît dans Effets › Stylize › TYPIX.' },
         { q: 'C\u2019est un plugin ou un preset ?', a: 'C\u2019est un effet .AEX installé via l\u2019installateur fourni. Il apparaît comme un effet natif dans Effets › Stylize › TYPIX, et se glisse sur n\u2019importe quel calque.' },
-        { q: 'Mac et Windows ?', a: 'Oui, le pack contient l\u2019installateur adapté à ta plateforme.' },
-        { q: 'Comment je reçois le fichier ?', a: 'Après le paiement sur Lemon Squeezy, tu reçois immédiatement un lien de téléchargement du zip (effet, installateur, désinstallateur et licence).' },
+        { q: 'Mac et Windows ?', a: 'Oui. Tu télécharges le pack correspondant à ta plateforme : Windows (.aex) ou macOS (.plugin), chacun avec son installateur.' },
+        { q: 'Windows affiche un avertissement à l’installation ?', a: 'C’est normal : Windows prévient pour tout fichier téléchargé non signé. Le plus simple : clic droit sur le .zip AVANT de l’extraire → Propriétés → coche « Débloquer » → OK, puis extrais. Sinon, clique sur « Informations complémentaires » → « Exécuter quand même ».' },
+        { q: 'L’interface est en français ?', a: 'Le panneau de l’effet dans After Effects est en anglais (Style, Size, Color…), comme la plupart des plugins AE. La notice fournie explique chaque réglage.' },
+        { q: 'Comment je reçois le fichier ?', a: 'Après le paiement sur Lemon Squeezy, tu reçois immédiatement un lien de téléchargement du zip : les deux effets (Typix et Typix Grid), l’installateur, le désinstallateur, la notice et la licence.' },
         { q: 'Les mises à jour sont incluses ?', a: 'Oui. Les futures versions de Typix sont incluses, accessibles depuis le même lien.' },
         { q: 'Je peux l\u2019utiliser pour des clients ?', a: 'Oui, la licence couvre l\u2019usage personnel et commercial. Seule la revente ou la redistribution du fichier est interdite.' },
       ],
