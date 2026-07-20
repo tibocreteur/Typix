@@ -407,7 +407,7 @@
           <div>
             <div data-reveal="up" data-reveal-text="" data-reveal-delay="80" style="font-size:11px; font-weight:700; letter-spacing: var(--track-tight); color: var(--neon); margin-bottom:8px;">.01 &gt; COMPOSE TA BANDE</div>
             <div style="border:1px solid var(--bd); background:#03050a; padding:10px;">
-              <video src="assets/custom-trame.mp4" autoplay="" loop="" muted="" playsinline="" style="display:block; width:100%; height:auto; mix-blend-mode: screen;"></video>
+              <video data-lazysrc="assets/custom-trame.mp4" preload="none" autoplay="" loop="" muted="" playsinline="" style="display:block; width:100%; height:auto; mix-blend-mode: screen;"></video>
             </div>
             <div style="display:flex; align-items:center; gap:8px; margin-top:7px; font-size:10px; color: var(--txt-faint); letter-spacing: var(--track-tight); text-transform:uppercase;"><span style="color: var(--neon);">└</span> du plus sombre au plus clair</div>
           </div>
@@ -420,7 +420,7 @@
         <div>
           <div data-reveal="up" data-reveal-text="" data-reveal-delay="80" style="font-size:11px; font-weight:700; letter-spacing: var(--track-tight); color: var(--neon); margin-bottom:8px;">.02 &gt; LE RENDU</div>
           <div style="position:relative; background:#03050a; border:1px solid var(--bd); overflow:hidden;">
-            <video src="assets/custom-rendu.mp4" autoplay="" loop="" muted="" playsinline="" style="display:block; width:100%; height:auto; mix-blend-mode: screen;"></video>
+            <video data-lazysrc="assets/custom-rendu.mp4" preload="none" autoplay="" loop="" muted="" playsinline="" style="display:block; width:100%; height:auto; mix-blend-mode: screen;"></video>
             <span style="position:absolute; top:10px; right:12px; display:inline-flex; align-items:center; gap:6px; font-size:10px; font-weight:700; letter-spacing: var(--track-wide); color: var(--neon-soft); background: rgba(1,2,4,0.55); padding:4px 8px;"><span style="width:6px;height:6px;border-radius:50%; background: var(--neon); animation: typixPulse 1.5s infinite;"></span>RENDER</span>
           </div>
         </div>
@@ -1420,6 +1420,41 @@ class Component extends DCLogic {
     };
   }
 }
+</script>
+<script>
+/* Chargement differe des videos lourdes hors ecran (section Tuiles perso).
+   Elles ne font pas partie du groupe synchronise des 9 demos : on peut donc
+   les charger au defilement sans casser le demarrage simultane de la grille.
+   rootMargin 300px = on lance le chargement juste avant qu'elles soient visibles. */
+(function () {
+  function setup() {
+    var vids = document.querySelectorAll('video[data-lazysrc]');
+    if (!vids.length) return;
+    if (!('IntersectionObserver' in window)) {   // vieux navigateur : on charge direct
+      Array.prototype.forEach.call(vids, function (v) {
+        v.src = v.getAttribute('data-lazysrc'); v.removeAttribute('data-lazysrc');
+      });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var v = e.target, s = v.getAttribute('data-lazysrc');
+        if (s) {
+          v.src = s;
+          v.removeAttribute('data-lazysrc');
+          var p = v.play && v.play(); if (p && p.catch) p.catch(function () {});
+        }
+        io.unobserve(v);
+      });
+    }, { rootMargin: '300px' });
+    Array.prototype.forEach.call(vids, function (v) { io.observe(v); });
+  }
+  if (document.readyState !== 'loading') setup();
+  else document.addEventListener('DOMContentLoaded', setup);
+  window.addEventListener('load', setup);
+  setTimeout(setup, 1500); setTimeout(setup, 4000);   // filet si le rendu est differe
+})();
 </script>
 </body>
 </html>
