@@ -87,12 +87,17 @@
   .crea-media:hover .crea-view .lbl, .crea-media:focus-visible .crea-view .lbl { transform: translateY(0) scale(1); }
   @keyframes typixLbFade { from { opacity:0; } to { opacity:1; } }
   @keyframes typixLbPop { from { opacity:0; transform: scale(0.94); } to { opacity:1; transform: scale(1); } }
+  /* la lightbox est ajoutée au <body>, HORS du conteneur qui définit les variables du thème
+     → on les redéclare ici sinon tout devient noir/transparent (boutons, néon, croix). */
   .crea-lightbox { position:fixed; inset:0; z-index:9700; display:flex; align-items:center; justify-content:center;
-    padding:4vmin; background: rgba(1,2,4,0.88); backdrop-filter: blur(6px); animation: typixLbFade 0.22s var(--ease); }
-  .crea-lightbox .box { position:relative; max-width:min(1100px,92vw); width:100%; border:1px solid var(--bd);
-    background:#010204; box-shadow:0 30px 90px rgba(0,0,0,0.7); animation: typixLbPop 0.26s var(--ease); }
-  .crea-stage { position:relative; background:#010204; line-height:0; }
-  .crea-lightbox video { display:block; width:100%; max-height:74vh; object-fit:contain; background:#010204; cursor:pointer; }
+    padding:4vmin; background: rgba(1,2,4,0.88); backdrop-filter: blur(6px); animation: typixLbFade 0.22s var(--ease);
+    --neon:#5cd6ff; --neon-ink:#03141d; --neon-soft:#a9e8ff; --txt-mute:#7ba0b8;
+    --bd:rgba(92,214,255,0.34); --bd-soft:rgba(92,214,255,0.16); --ease:ease-in-out;
+    --font-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace; }
+  .crea-lightbox .box { position:relative; max-width:min(1100px,92vw); width:100%; max-height:92vh; display:flex; flex-direction:column;
+    border:1px solid var(--bd); background:#010204; box-shadow:0 30px 90px rgba(0,0,0,0.7); animation: typixLbPop 0.26s var(--ease); }
+  .crea-stage { position:relative; flex:1 1 auto; min-height:0; display:flex; align-items:center; justify-content:center; background:#010204; }
+  .crea-lightbox video { display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; background:#010204; cursor:pointer; }
   .crea-bigplay { position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); width:72px; height:72px;
     display:flex; align-items:center; justify-content:center; background: rgba(1,2,4,0.55); border:1px solid var(--neon);
     color: var(--neon); font-size:22px; opacity:0; transition: opacity 0.2s var(--ease); pointer-events:none; }
@@ -114,9 +119,9 @@
   .crea-lightbox .cap { display:flex; align-items:center; gap:8px; padding:9px 12px; border-top:1px solid var(--bd-soft);
     font-size:11px; letter-spacing: var(--track-tight); color: var(--txt-mute); text-transform:uppercase; }
   .crea-lightbox .cap::before { content:"\003e"; color: var(--neon); }
-  .crea-lightbox .x { position:absolute; top:-14px; right:-14px; width:34px; height:34px; display:inline-flex;
+  .crea-lightbox .x { position:absolute; top:10px; right:10px; width:34px; height:34px; display:inline-flex;
     align-items:center; justify-content:center; background: var(--neon); color: var(--neon-ink); border:none;
-    cursor:pointer; font-size:15px; box-shadow:0 6px 18px rgba(0,0,0,0.5); transition: transform 0.2s var(--ease); z-index:3; }
+    cursor:pointer; font-size:15px; box-shadow:0 6px 18px rgba(0,0,0,0.5); transition: transform 0.2s var(--ease); z-index:4; }
   .crea-lightbox .x:hover { transform: scale(1.08); }
   .crea-lightbox .box:fullscreen { max-width:none; width:100vw; height:100vh; display:flex; flex-direction:column; justify-content:center; }
   .crea-lightbox .box:fullscreen .crea-stage { flex:1; display:flex; align-items:center; justify-content:center; overflow:hidden; }
@@ -1121,21 +1126,21 @@ class Component extends DCLogic {
 /* Lightbox des CRÉATIONS uniquement : clic (ou Entrée) sur une carte .crea-media
    -> ouvre la vidéo en grand. Délégation sur document pour survivre aux re-renders. */
 (function () {
-  var box = null, vid = null;
+  var box = null, vid = null, toggleFn = null;
   function fmt(t) { if (!isFinite(t) || t < 0) t = 0; var m = Math.floor(t / 60), s = Math.floor(t % 60); return m + ':' + (s < 10 ? '0' : '') + s; }
   function close() {
     if (!box) return;
     if (box._cleanup) box._cleanup();
     if (document.fullscreenElement) { try { document.exitFullscreen(); } catch (e) {} }
     if (vid) { try { vid.pause(); } catch (e) {} vid.removeAttribute('src'); vid.load && vid.load(); }
-    box.remove(); box = null; vid = null;
+    box.remove(); box = null; vid = null; toggleFn = null;
     document.documentElement.style.overflow = '';
     document.removeEventListener('keydown', onKey);
   }
   function onKey(e) {
     if (!box) return;
     if (e.key === 'Escape') { close(); return; }
-    if (e.key === ' ' || e.key === 'k') { e.preventDefault(); if (vid) { vid.paused ? vid.play() : vid.pause(); } return; }
+    if (e.key === ' ' || e.key === 'k') { e.preventDefault(); if (toggleFn) toggleFn(); return; }
     if (e.key === 'ArrowRight') { if (vid && vid.duration) vid.currentTime = Math.min(vid.duration, vid.currentTime + 5); return; }
     if (e.key === 'ArrowLeft') { if (vid) vid.currentTime = Math.max(0, vid.currentTime - 5); return; }
   }
@@ -1172,8 +1177,15 @@ class Component extends DCLogic {
     capEl.textContent = cap && cap.indexOf('{{') === -1 ? cap : '';
     if (!capEl.textContent) capEl.style.display = 'none';
     function icon(playing) { var c = playing ? 'fa-solid fa-pause' : 'fa-solid fa-play'; ppI.className = c; bigI.className = c; stage.classList.toggle('paused', !playing); }
-    function toggle() { if (vid.paused) vid.play(); else vid.pause(); }
-    vid.addEventListener('play', function () { icon(true); });
+    // certains scripts du site relancent play() sur toutes les vidéos → on bloque ces relances
+    // externes quand l'utilisateur a mis en pause, sinon la lightbox repart toute seule.
+    var userPaused = false, nativePlay = vid.play.bind(vid);
+    vid.play = function () { if (userPaused) return Promise.resolve(); return nativePlay(); };
+    function doPlay() { userPaused = false; var p = nativePlay(); if (p && p.catch) p.catch(function () {}); }
+    function doPause() { userPaused = true; try { vid.pause(); } catch (e) {} }
+    function toggle() { if (vid.paused) doPlay(); else doPause(); }
+    toggleFn = toggle;
+    vid.addEventListener('play', function () { if (userPaused) { try { vid.pause(); } catch (e) {} return; } icon(true); });
     vid.addEventListener('pause', function () { icon(false); });
     vid.addEventListener('loadedmetadata', function () { timeEl.textContent = '0:00 / ' + fmt(vid.duration); });
     vid.addEventListener('timeupdate', function () {
@@ -1204,7 +1216,7 @@ class Component extends DCLogic {
     document.body.appendChild(box);
     document.documentElement.style.overflow = 'hidden';
     document.addEventListener('keydown', onKey);
-    var pl = vid.play && vid.play(); if (pl && pl.catch) pl.catch(function () {});
+    doPlay();
   }
   function trigger(t) {
     var m = t && t.closest && t.closest('#creations .crea-media');
