@@ -144,6 +144,14 @@
   .crea-lightbox .box:fullscreen .crea-stage { flex:1; display:flex; align-items:center; justify-content:center; overflow:hidden; }
   .crea-lightbox .box:fullscreen video { max-height:none; height:100%; }
 
+  /* anti-débordement horizontal : les fenêtres et les enfants de grille doivent pouvoir rétrécir
+     (min-width:auto par défaut sur un item flex/grid les bloque à la largeur de leur contenu). */
+  [data-window] { min-width: 0; max-width: 100%; }
+  [data-grid] > * { min-width: 0; }
+  /* les décalages décoratifs des sections ne tiennent que si les marges peuvent les absorber
+     (viewport large) ; en-dessous on les annule sinon une fenêtre dépasse à droite. */
+  @media (max-width: 1259px) { [data-sec] { transform: none !important; } }
+
   /* ---------- responsive ---------- */
   @media (max-width: 980px) {
     [data-sec] { transform: none !important; }
