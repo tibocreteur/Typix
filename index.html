@@ -108,13 +108,36 @@
     padding:4vmin; background: rgba(1,2,4,0.88); backdrop-filter: blur(6px); animation: typixLbFade 0.22s var(--ease); }
   .crea-lightbox .box { position:relative; max-width:min(1100px,92vw); width:100%; border:1px solid var(--bd);
     background:#010204; box-shadow:0 30px 90px rgba(0,0,0,0.7); animation: typixLbPop 0.26s var(--ease); }
-  .crea-lightbox video { display:block; width:100%; max-height:82vh; object-fit:contain; background:#010204; }
+  .crea-stage { position:relative; background:#010204; line-height:0; }
+  .crea-lightbox video { display:block; width:100%; max-height:74vh; object-fit:contain; background:#010204; cursor:pointer; }
+  .crea-bigplay { position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); width:72px; height:72px;
+    display:flex; align-items:center; justify-content:center; background: rgba(1,2,4,0.55); border:1px solid var(--neon);
+    color: var(--neon); font-size:22px; opacity:0; transition: opacity 0.2s var(--ease); pointer-events:none; }
+  .crea-stage.paused .crea-bigplay { opacity:1; }
+  .crea-ctrls { display:flex; align-items:center; gap:14px; padding:11px 16px; background: rgba(1,2,4,0.92);
+    border-top:1px solid var(--bd-soft); font-family: var(--font-mono, monospace); }
+  .crea-ctrls button { background:none; border:none; padding:2px; cursor:pointer; color: var(--txt-mute);
+    font-size:15px; display:inline-flex; transition: color 0.15s var(--ease); }
+  .crea-ctrls button:hover { color: var(--neon); }
+  .crea-ctrls .crea-pp { color: var(--neon); }
+  .crea-track { position:relative; flex:1; height:6px; background: rgba(92,214,255,0.16); cursor:pointer; }
+  .crea-track .crea-fill { position:absolute; left:0; top:0; bottom:0; width:0; background: var(--neon); }
+  .crea-track .crea-knob { position:absolute; top:50%; left:0; width:13px; height:13px; margin-left:-6px;
+    transform: translateY(-50%) scale(0); background:#fff; border:2px solid var(--neon); border-radius:50%;
+    box-shadow:0 0 8px rgba(92,214,255,0.7); transition: transform 0.15s var(--ease); }
+  .crea-track:hover .crea-knob { transform: translateY(-50%) scale(1); }
+  .crea-time { font-size:11px; font-weight:700; letter-spacing:0.06em; color: var(--txt-mute);
+    white-space:nowrap; font-variant-numeric: tabular-nums; }
   .crea-lightbox .cap { display:flex; align-items:center; gap:8px; padding:9px 12px; border-top:1px solid var(--bd-soft);
     font-size:11px; letter-spacing: var(--track-tight); color: var(--txt-mute); text-transform:uppercase; }
+  .crea-lightbox .cap::before { content:"\003e"; color: var(--neon); }
   .crea-lightbox .x { position:absolute; top:-14px; right:-14px; width:34px; height:34px; display:inline-flex;
     align-items:center; justify-content:center; background: var(--neon); color: var(--neon-ink); border:none;
-    cursor:pointer; font-size:15px; box-shadow:0 6px 18px rgba(0,0,0,0.5); transition: transform 0.2s var(--ease); }
+    cursor:pointer; font-size:15px; box-shadow:0 6px 18px rgba(0,0,0,0.5); transition: transform 0.2s var(--ease); z-index:3; }
   .crea-lightbox .x:hover { transform: scale(1.08); }
+  .crea-lightbox .box:fullscreen { max-width:none; width:100vw; height:100vh; display:flex; flex-direction:column; justify-content:center; }
+  .crea-lightbox .box:fullscreen .crea-stage { flex:1; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .crea-lightbox .box:fullscreen video { max-height:none; height:100%; }
 
   /* ---------- responsive ---------- */
   @media (max-width: 980px) {
@@ -1527,14 +1550,23 @@ class Component extends DCLogic {
    du composant (setState recrée les cartes). Ne touche PAS aux 9 démos ni au reste. */
 (function () {
   var box = null, vid = null;
+  function fmt(t) { if (!isFinite(t) || t < 0) t = 0; var m = Math.floor(t / 60), s = Math.floor(t % 60); return m + ':' + (s < 10 ? '0' : '') + s; }
   function close() {
     if (!box) return;
+    if (box._cleanup) box._cleanup();
+    if (document.fullscreenElement) { try { document.exitFullscreen(); } catch (e) {} }
     if (vid) { try { vid.pause(); } catch (e) {} vid.removeAttribute('src'); vid.load && vid.load(); }
     box.remove(); box = null; vid = null;
     document.documentElement.style.overflow = '';
     document.removeEventListener('keydown', onKey);
   }
-  function onKey(e) { if (e.key === 'Escape') close(); }
+  function onKey(e) {
+    if (!box) return;
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === ' ' || e.key === 'k') { e.preventDefault(); if (vid) { vid.paused ? vid.play() : vid.pause(); } return; }
+    if (e.key === 'ArrowRight') { if (vid && vid.duration) vid.currentTime = Math.min(vid.duration, vid.currentTime + 5); return; }
+    if (e.key === 'ArrowLeft') { if (vid) vid.currentTime = Math.max(0, vid.currentTime - 5); return; }
+  }
   function open(src, cap) {
     if (!src || src.indexOf('{{') !== -1) return;
     close();
@@ -1543,20 +1575,64 @@ class Component extends DCLogic {
     box.innerHTML =
       '<div class="box">' +
       '<button class="x" type="button" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>' +
-      '<video autoplay loop muted playsinline controls></video>' +
+      '<div class="crea-stage paused">' +
+      '<video loop muted playsinline></video>' +
+      '<span class="crea-bigplay"><i class="fa-solid fa-play"></i></span>' +
+      '</div>' +
+      '<div class="crea-ctrls">' +
+      '<button class="crea-pp" type="button" aria-label="Lecture / Pause"><i class="fa-solid fa-play"></i></button>' +
+      '<div class="crea-track"><div class="crea-fill"></div><span class="crea-knob"></span></div>' +
+      '<span class="crea-time">0:00 / 0:00</span>' +
+      '<button class="crea-fs" type="button" aria-label="Plein écran"><i class="fa-solid fa-expand"></i></button>' +
+      '</div>' +
       '<div class="cap"></div>' +
       '</div>';
     vid = box.querySelector('video');
     vid.src = src;
-    var capEl = box.querySelector('.cap');
+    var stage = box.querySelector('.crea-stage'),
+        ppI = box.querySelector('.crea-pp i'),
+        bigI = box.querySelector('.crea-bigplay i'),
+        track = box.querySelector('.crea-track'),
+        fill = box.querySelector('.crea-fill'),
+        knob = box.querySelector('.crea-knob'),
+        timeEl = box.querySelector('.crea-time'),
+        capEl = box.querySelector('.cap');
     capEl.textContent = cap && cap.indexOf('{{') === -1 ? cap : '';
     if (!capEl.textContent) capEl.style.display = 'none';
+    function icon(playing) { var c = playing ? 'fa-solid fa-pause' : 'fa-solid fa-play'; ppI.className = c; bigI.className = c; stage.classList.toggle('paused', !playing); }
+    function toggle() { if (vid.paused) vid.play(); else vid.pause(); }
+    vid.addEventListener('play', function () { icon(true); });
+    vid.addEventListener('pause', function () { icon(false); });
+    vid.addEventListener('loadedmetadata', function () { timeEl.textContent = '0:00 / ' + fmt(vid.duration); });
+    vid.addEventListener('timeupdate', function () {
+      var d = vid.duration || 0, p = d ? (vid.currentTime / d) : 0;
+      fill.style.width = (p * 100) + '%'; knob.style.left = (p * 100) + '%';
+      timeEl.textContent = fmt(vid.currentTime) + ' / ' + fmt(d);
+    });
+    vid.addEventListener('click', toggle);
+    box.querySelector('.crea-pp').addEventListener('click', toggle);
+    var dragging = false;
+    function seek(e) { var r = track.getBoundingClientRect(), cx = e.touches ? e.touches[0].clientX : e.clientX, p = Math.max(0, Math.min(1, (cx - r.left) / r.width)); if (vid.duration) vid.currentTime = p * vid.duration; }
+    function move(e) { if (dragging) seek(e); }
+    function up() { dragging = false; }
+    track.addEventListener('mousedown', function (e) { dragging = true; seek(e); });
+    track.addEventListener('touchstart', function (e) { seek(e); }, { passive: true });
+    track.addEventListener('touchmove', function (e) { seek(e); }, { passive: true });
+    document.addEventListener('mousemove', move);
+    document.addEventListener('mouseup', up);
+    box.querySelector('.crea-fs').addEventListener('click', function () {
+      var el = box.querySelector('.box');
+      if (document.fullscreenElement) { document.exitFullscreen(); }
+      else if (el.requestFullscreen) { el.requestFullscreen(); }
+      else if (vid.webkitEnterFullscreen) { vid.webkitEnterFullscreen(); }
+    });
     box.addEventListener('click', function (e) { if (e.target === box) close(); });
     box.querySelector('.x').addEventListener('click', close);
+    box._cleanup = function () { document.removeEventListener('mousemove', move); document.removeEventListener('mouseup', up); };
     document.body.appendChild(box);
     document.documentElement.style.overflow = 'hidden';
     document.addEventListener('keydown', onKey);
-    var p = vid.play && vid.play(); if (p && p.catch) p.catch(function () {});
+    var pl = vid.play && vid.play(); if (pl && pl.catch) pl.catch(function () {});
   }
   function trigger(t) {
     var m = t && t.closest && t.closest('#creations .crea-media');
@@ -1566,6 +1642,7 @@ class Component extends DCLogic {
   }
   document.addEventListener('click', function (e) { trigger(e.target); });
   document.addEventListener('keydown', function (e) {
+    if (box) return;
     if (e.key !== 'Enter' && e.key !== ' ') return;
     var m = document.activeElement;
     if (m && m.classList && m.classList.contains('crea-media')) { e.preventDefault(); trigger(m); }
