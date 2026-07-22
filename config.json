@@ -6,7 +6,7 @@
   "devise": "€",
 
   "note_achat":       "═══ LIEN D'ACHAT ═══  ·  lienAchat = URL du bouton Obtenir · ouvrirNouvelOnglet = ouvrir dans un nouvel onglet (true/false)",
-  "lienAchat": "https://typix.lemonsqueezy.com/checkout",
+  "lienAchat": "https://typix.lemonsqueezy.com/checkout/buy/64071f8e-ab08-4142-ad81-9b572c7d75a5",
   "ouvrirNouvelOnglet": true,
 
   "note_paiement":    "═══ PAIEMENT ═══  ·  plateformePaiement = nom du prestataire affiché dans les CGV, mentions légales, FAQ et checkout (ex: Gumroad, Lemon Squeezy). Remplace le nom partout automatiquement.",
