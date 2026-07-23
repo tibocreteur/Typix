@@ -789,7 +789,42 @@ class Component extends DCLogic {
     this._timer = setInterval(tick, 80);
   }
 
+  _instantReveal() {
+    // Révèle la page sans le loader ni la cascade d'entrée (retour sur l'accueil).
+    var loader = document.querySelector('[data-loader]');
+    if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+    document.documentElement.style.overflow = '';
+    ['[data-anim="herovid"]', '[data-anim="banner"]', '[data-anim="header"]', '[data-anim="herowin"]', '[data-anim="buybtn"]'].forEach(function (sel) {
+      var el = document.querySelector(sel);
+      if (el) { el.style.animation = 'none'; el.style.opacity = '1'; el.style.transform = 'none'; }
+    });
+    this._preloadFinished = true;
+    this._preloadDone = true;
+    var self = this;
+    // _bindVideos / _syncNow / _revealCheck sont définis après cet appel dans
+    // componentDidMount → différer d'un tick pour qu'ils existent.
+    setTimeout(function () {
+      var trySync = function (tries) {
+        if (self._initialSyncDone) return;
+        if (self._bindVideos) self._bindVideos();
+        var vids = Array.prototype.slice.call(document.querySelectorAll('video[data-vsrc]'));
+        var allReady = vids.length && vids.every(function (v) { return v.readyState >= 3; });
+        if (allReady || tries > 20) { self._initialSyncDone = true; if (self._syncNow) self._syncNow(); }
+        else setTimeout(function () { trySync(tries + 1); }, 80);
+      };
+      trySync(0);
+      if (self._revealCheck) self._revealCheck();
+      if (self.state.lang === 'en') self._applyLang('en');
+    }, 0);
+  }
+
   _runPreload() {
+    // Intro (loader plein écran) : jouée une seule fois par session. Au retour sur
+    // l'accueil (depuis une page annexe, un back, un reload) → révélation instantanée.
+    var seen = false;
+    try { seen = sessionStorage.getItem('typix_intro') === '1'; } catch (e) {}
+    if (seen) { this._instantReveal(); return; }
+    try { sessionStorage.setItem('typix_intro', '1'); } catch (e) {}
     const sources = [];
     const add = (s) => { if (s && !/\{\{/.test(s) && sources.indexOf(s) === -1) sources.push(s); };
     // toutes les vidéos du site : démos (data-vsrc), fond du hero, rendu custom, etc.
