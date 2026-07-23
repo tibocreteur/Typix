@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Typix</title>
+<title>Typix · Effet ASCII &amp; 18 styles animés pour After Effects</title>
 <meta name="description" content="Transforme tes vidéos dans After Effects : 18 styles prêts à poser et un mode 100% custom, animé image par image. 2 effets, installateur, notice et licence inclus. Offre de lancement 10€ au lieu de 15€.">
 <link rel="icon" type="image/png" href="assets/favicon.png?v=3">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=3">
@@ -342,6 +342,7 @@
 
   <!-- ====== HERO — DOS boot window ====== -->
   <section style="position:relative; min-height: calc(100dvh - 32px); display:flex; align-items:center; overflow:hidden; background:#010204;">
+    <h1 style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;">Typix — moteur d'effet ASCII pour After Effects : 18 styles prêts à poser et un mode 100% custom animé image par image.</h1>
     <video data-anim="herovid" src="assets/fond.mp4" autoplay="" loop="" muted="" playsinline="" style="opacity:0; position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></video>
     <div style="position:absolute; inset:0; background: linear-gradient(110deg, rgba(1,2,4,0.92) 0%, rgba(1,2,4,0.68) 46%, rgba(1,2,4,0.3) 100%);"></div>
     <div style="position:absolute; left:0; right:0; bottom:0; height:38%; background: linear-gradient(to bottom, rgba(1,2,4,0) 0%, rgba(1,2,4,0.85) 78%, #010204 100%);"></div>
@@ -660,13 +661,15 @@ en quelques clics." style="font-size: clamp(28px, 4vw, 52px); line-height:1.05; 
       <div style="display:flex; flex-direction:column; align-items:center; gap:14px; padding-top:24px; text-align:center;">
         <a data-site-link="" href="https://www.tibzdesign.fr" target="_blank" rel="noopener noreferrer" title="Tibz Design" style="display:inline-flex; text-decoration:none;"><img src="assets/tibz-wordmark.png" alt="Tibz Design" style="height:20px; filter: invert(1); opacity:0.85; transition: opacity var(--dur-fast) var(--ease), filter var(--dur-fast) var(--ease);" style-hover="opacity:1; filter: invert(1) drop-shadow(0 0 6px rgba(92,214,255,0.55));"></a>
         <div style="display:flex; align-items:center; justify-content:center; gap:18px; flex-wrap:wrap;">
-          <a href="#" onClick="{{ openMentions }}" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color:#f3fbff; text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">Mentions légales</a>
+          <a href="/mentions-legales" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color:#f3fbff; text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">Mentions légales</a>
           <span style="color: var(--txt-faint); font-size:10px;">·</span>
-          <a href="#" onClick="{{ openCgv }}" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color:#f3fbff; text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">CGV</a>
+          <a href="/cgv" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color:#f3fbff; text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">CGV</a>
           <span style="color: var(--txt-faint); font-size:10px;">·</span>
-          <a href="#" onClick="{{ openPrivacy }}" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color:#f3fbff; text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">Confidentialité</a>
+          <a href="/confidentialite" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color:#f3fbff; text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">Confidentialité</a>
+          <span style="color: var(--txt-faint); font-size:10px;">·</span>
+          <a href="/support" style="font-size:11px; letter-spacing: var(--track-tight); text-transform:uppercase; color:#f3fbff; text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;">Support</a>
         </div>
-        <a href="#" onClick="{{ onContact }}" style="display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing: var(--track-tight); color: var(--neon-soft); text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;"><i class="fa-solid fa-envelope" style="font-size:11px; color: var(--neon);"></i>Nous contacter</a>
+        <a href="/contact" style="display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing: var(--track-tight); color: var(--neon-soft); text-decoration:none; transition: color var(--dur-fast) var(--ease);" style-hover="color:#f3fbff;"><i class="fa-solid fa-envelope" style="font-size:11px; color: var(--neon);"></i>Nous contacter</a>
         <span style="font-size:11px; letter-spacing: var(--track-wide); text-transform:uppercase; color:#f3fbff;">© Tibz Design · Typix v1.0</span>
       </div>
     </div>
@@ -1030,6 +1033,7 @@ class Component extends DCLogic {
     this._runPreload();
     this._loadConfig();
     this._initPixelBlast();
+    this._initTracking();
 
     // bind des sources vidéo (une fois préchargées : tout d'un coup, synchronisé)
     this._bindVideos = () => {
@@ -1260,6 +1264,33 @@ class Component extends DCLogic {
   }
 
   componentWillUnmount() { clearInterval(this._timer); clearInterval(this._vTimer); clearInterval(this._revTimer); if (this._syncTimer) clearInterval(this._syncTimer); if (this._revealBoot) clearInterval(this._revealBoot); if (this._videoBoot) clearInterval(this._videoBoot); if (this._loaderTick) clearInterval(this._loaderTick); if (this._preloadGuard) clearTimeout(this._preloadGuard); if (this._winClick) document.removeEventListener('click', this._winClick); if (this._onRevealScroll) { window.removeEventListener('scroll', this._onRevealScroll); window.removeEventListener('resize', this._onRevealScroll); } if (this._revealCheck) window.removeEventListener('load', this._revealCheck); if (this._pbRaf) cancelAnimationFrame(this._pbRaf); if (this._pbResize) window.removeEventListener('resize', this._pbResize); if (this._pbMove) window.removeEventListener('pointermove', this._pbMove); }
+
+  _initTracking() {
+    var track = function (name, data) {
+      try { (window.va || function () {})('event', Object.assign({ name: name }, data || {})); } catch (e) {}
+    };
+    // Étape finale on-site du funnel : clic vers le checkout Lemon Squeezy (externe)
+    var where = function (a) {
+      if (a.getAttribute('data-anim') === 'buybtn') return 'flottant';
+      if (a.getAttribute('data-m') === 'header-cta') return 'header';
+      var s = a.closest('section');
+      return (s && s.id) ? s.id : 'page';
+    };
+    document.querySelectorAll('a[data-buy], a[data-anim="buybtn"], a[data-m="header-cta"]').forEach(function (a) {
+      a.addEventListener('click', function () { track('checkout_click', { position: where(a) }); });
+    });
+    // Étape intermédiaire : la section prix/checkout entre dans le viewport
+    var pricing = document.getElementById('inclus');
+    if (pricing && 'IntersectionObserver' in window) {
+      var seen = false;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && !seen) { seen = true; track('pricing_view'); io.disconnect(); }
+        });
+      }, { threshold: 0.4 });
+      io.observe(pricing);
+    }
+  }
 
   _loadConfig() {
     fetch('config.json', { cache: 'no-store' })

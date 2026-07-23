@@ -1,0 +1,156 @@
+/* ── Pages annexes Typix (légal, contact, support) ──────────────────────────
+   Palette et esprit repris de la page de vente (index.html). Autonome :
+   ne dépend que de _ds/.../tokens/fonts.css pour --font-mono. */
+
+:root {
+  --bg: #010204;
+  --panel: #070b11;
+  --panel-2: #0a0f17;
+  --bd: rgba(92, 214, 255, 0.34);
+  --bd-soft: rgba(92, 214, 255, 0.16);
+  --neon: #5cd6ff;
+  --neon-soft: #a9e8ff;
+  --neon-ink: #03141d;
+  --txt: #cfe6f5;
+  --txt-mute: #7ba0b8;
+  --txt-faint: #496678;
+  --mono: var(--font-mono, ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--txt);
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.75;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--neon-soft); text-decoration: none; transition: color 0.15s ease; }
+a:hover { color: #f3fbff; }
+
+/* ── Barre du haut ─────────────────────────────────────────────── */
+.lp-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px clamp(18px, 5vw, 48px);
+  border-bottom: 1px solid var(--bd-soft);
+  background: rgba(1, 2, 4, 0.7);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(6px);
+}
+.lp-brand { display: inline-flex; align-items: center; gap: 12px; }
+.lp-brand img { height: 26px; width: auto; display: block; }
+.lp-back {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--neon);
+  border: 1px solid var(--bd);
+  padding: 8px 13px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.lp-back:hover { border-color: var(--neon); color: #f3fbff; }
+
+/* ── Contenu ───────────────────────────────────────────────────── */
+.lp-main {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 64px) clamp(18px, 5vw, 40px) 72px;
+}
+.lp-crumb {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--txt-faint);
+  margin: 0 0 18px;
+}
+.lp-crumb a { color: var(--txt-mute); }
+.lp-main h1 {
+  font-size: clamp(26px, 5vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #f3fbff;
+  margin: 0 0 8px;
+}
+.lp-updated {
+  font-size: 12px;
+  color: var(--txt-faint);
+  margin: 0 0 34px;
+}
+.lp-main h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--neon);
+  margin: 34px 0 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+}
+.lp-main h2::before { content: ">"; color: var(--neon); }
+.lp-main p { margin: 0 0 14px; color: var(--txt-mute); }
+.lp-main strong { color: #f3fbff; font-weight: 700; }
+.lp-main ul { margin: 0 0 14px; padding-left: 20px; color: var(--txt-mute); }
+.lp-main li { margin: 0 0 6px; }
+.lp-main .lp-lead { color: var(--txt); font-size: 15px; margin-bottom: 26px; }
+.lp-card {
+  border: 1px solid var(--bd-soft);
+  background: var(--panel);
+  padding: 18px 20px;
+  margin: 0 0 14px;
+}
+.lp-mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 15px;
+  color: var(--neon-soft);
+  border: 1px solid var(--bd);
+  padding: 11px 16px;
+  margin: 6px 0 4px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.lp-mail:hover { border-color: var(--neon); color: #f3fbff; }
+
+/* ── Pied de page ──────────────────────────────────────────────── */
+.lp-foot {
+  flex-shrink: 0;
+  border-top: 1px solid var(--bd-soft);
+  padding: 26px clamp(18px, 5vw, 48px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 18px;
+}
+.lp-foot nav { display: flex; flex-wrap: wrap; gap: 14px; }
+.lp-foot a, .lp-foot span {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.lp-foot .lp-copy { margin-left: auto; color: var(--txt-faint); }
+.lp-foot .lp-sep { color: var(--txt-faint); }
+
+@media (max-width: 520px) {
+  .lp-foot { flex-direction: column; align-items: flex-start; }
+  .lp-foot .lp-copy { margin-left: 0; }
+}
